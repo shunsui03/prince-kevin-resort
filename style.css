@@ -20,13 +20,17 @@ body {
 }
 
 /* 2. UNIVERSAL SECTION STYLING (Para Pantay-pantay) */
+/* Palitan o dagdagan ang existing section CSS mo */
 section {
-    padding: 100px 0; /* Consistent na taas at baba */
-    min-height: 100vh; /* Ginagawa nitong isang buong screen ang bawat section */
+    min-height: 100vh; /* Laging 100% ng screen height */
+    width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertical center */
-    align-items: center; /* Horizontal center */
+    justify-content: center; /* Nilalagay ang content sa gitna (vertical) */
+    align-items: center;    /* Nilalagay ang content sa gitna (horizontal) */
+    padding: 80px 0;        /* Space para hindi dumikit sa gilid at navbar */
+    overflow: hidden;       /* Para walang 'leak' ng design sa labas */
+    position: relative;
 }
 
 .container {
