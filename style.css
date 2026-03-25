@@ -135,29 +135,32 @@ header {
 }
 .services-grid {
     display: flex;
-    flex-direction: column; /* ISANG BUONG COLUMN (STACKED) */
-    align-items: center; /* Centered sa gitna */
-    gap: 20px; /* Space between cards */
-    max-width: 600px; /* Limitahan ang lapad para mukhang column */
-    margin: 0 auto; /* Center ang buong column */
+    flex-wrap: wrap;
+    justify-content: center; /* Eto ang bumibigay ng space sa gitna para maging centered ang 2 sa baba */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 .service-card {
     background: white;
-    padding: 30px;
+    padding: 40px 20px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid #eee;
     transition: 0.3s;
-    width: 100%; /* Punuin ang lapad ng column */
-    max-width: none; /* Override previous */
+    width: 350px; /* Fixed width para maayos ang pagkakablocks */
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
-.service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); border-color: #2c5e1a; }
-.service-card i {
-    font-size: 40px;       /* Laki ng icon */
-    color: #2c5e1a;        /* Green color */
-    margin-bottom: 15px;   /* Space sa baba */
-    display: block;        /* Para nasa gitna */
+.service-card i { 
+    font-size: 40px; 
+    color: #2c5e1a; 
+    margin-bottom: 15px; 
+    display: block;
+}
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: #2c5e1a;
 }
 
 /* Rates Section - DARK GREEN */
@@ -166,11 +169,23 @@ header {
     padding: 100px 5% 80px 5%; 
 }
 }
-.rates-container { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+.rates-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Centered lahat */
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
 .rate-card {
-    background: white; padding: 30px; border-radius: 10px; width: 300px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2); 
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 350px; /* Parehong width sa services */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-top: 5px solid #d4af37;
+    flex-grow: 1; /* Para gumana sa mobile */
+}
 }
 .rate-card h3 { margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px; }
 .rate-card ul { list-style: none; }
