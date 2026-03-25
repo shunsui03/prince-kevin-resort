@@ -86,10 +86,11 @@
     background-color: #f4f7f4; 
 }
 
-.booking-section h2 {
+.booking-section h2::after {
+    display: none !important;
+    content: none !important;
     margin-bottom: 40px; /* Dagdagan natin para bumaba nang kaunti yung form card */
     font-family: 'Playfair Display', serif;
-    border-bottom: none !important;
     font-size: 36px;
     color: #2c5e1a;
     text-align: center;
