@@ -83,19 +83,20 @@
        /* 10. BOOKING SECTION (OPTIMIZED FOR VISIBILITY) */
         /* 10. BOOKING SECTION (AYOS NA) */
                 /* 10. BOOKING SECTION (MAS MABABA NA) */
+                /* 10. BOOKING SECTION (FIXED FOR 100% ZOOM) */
         .booking-section { 
-            padding: 80px 0 100px 0; 
+            padding: 150px 0 100px 0; /* PINALAKI KO ANG PADDING SA TAAS (150px) */
             background-color: #f4f7f4; 
         }
 
-        /* PINABABA ANG TITLE AT TINANGGAL ANG LINE */
+        /* ITO ANG NAGPABABA SA TITLE AT NAGTANGGAL NG LINE */
         .booking-section .section-title {
-            margin-top: 100px; /* TAASAN ITO KUNG GUSTO PA NG MAS MABABA */
-            margin-bottom: 50px;
+            margin-bottom: 50px; /* Espasyo bago ang form */
         }
 
+        /* TINANGGAL ANG YELLOW LINE DITO */
         .booking-section .section-title h2::after {
-            display: none; /* Walang yellow line */
+            display: none; /* Tatanggalin ang yellow line */
         }
 
         .booking-card-compact { 
