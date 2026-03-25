@@ -4,7 +4,7 @@
 .rates-section {
     background: linear-gradient(135deg, #1a3a0f, #2c5e1a);
     padding: 120px 0;
-    
+
     /* ITO ANG I-DAGDAG: Sasaklaw nito ang buong screen height 
        kaya lalaki ang green background */
     min-height: 100vh; 
