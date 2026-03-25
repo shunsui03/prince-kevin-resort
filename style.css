@@ -86,16 +86,16 @@
                 /* 10. BOOKING SECTION (FIXED FOR 100% ZOOM) */
                 /* 10. BOOKING SECTION (TALLER & GRANDER) */
                /* 10. BOOKING SECTION (FORM IS NOW CLOSER TO TITLE) */
+       /* 10. BOOKING SECTION (TITLE CLOSER TO FORM) */
         .booking-section { 
             padding: 150px 0 100px 0; 
             background-color: #f4f7f4; 
         }
 
-        /* DITO NAGSIMULA ANG AYOS */
+        /* ITO ANG BINAGO: Kinonti lang ang space para bumaba ang title malapit sa form */
         .booking-section .section-title {
-            margin-bottom: 20px; /* BINAWASAN KO TO FROM 50px TO 20px para dumikit sa title */
+            margin-bottom: 10px; /* Binawasan ko ng konti from 20px to 10px */
         }
-
         .booking-section .section-title h2::after {
             display: none; /* Walang yellow line */
         }
