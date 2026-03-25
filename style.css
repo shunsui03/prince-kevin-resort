@@ -246,3 +246,63 @@ footer {
     background-color: #1e4412;
     color: white !important;
 }
+/* 1. SMOOTH SCROLLING (Para di biglaang lunggat) */
+html {
+    scroll-behavior: smooth;
+}
+
+/* 2. NAVBAR STYLING UPDATE */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%; /* Unti-unting spacing */
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+/* 3. LINK STYLING (Para mukhang buttons) */
+.nav-links a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    font-size: 15px;
+    margin-left: 5px; /* kaunting space */
+    
+    /* Gagawing button style */
+    padding: 8px 20px;         /* Dagdag space sa loob */
+    border-radius: 30px;       /* Bilugan ang gilid */
+    border: 2px solid transparent; /* Border na di makikita default */
+    transition: all 0.3s ease; /* Smooth transition */
+}
+
+/* EFFECT KAPAG NAKA-HOVER ANG MOUSE */
+.nav-links a:hover {
+    background-color: #2c5e1a; /* Green background */
+    color: white;              /* White text */
+    border-color: #2c5e1a;     /* Green border */
+    transform: translateY(-2px); /* Umakyat ng konti */
+}
+
+/* EFFECT KAPAG ACTIVE O NAPINDUTAN (Optional) */
+.nav-links a:active {
+    transform: translateY(0px); /* Babalik sa place */
+    background-color: #1e4412; /* Darker green */
+}
+
+/* 4. SPECIFIC STYLE PARA SA ADMIN LOGIN BUTTON */
+.nav-links .admin-btn {
+    background-color: #d4af37; /* Gold default */
+    color: white !important;
+    font-weight: 600;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.nav-links .admin-btn:hover {
+    background-color: #2c5e1a; /* Green on hover */
+    border-color: #2c5e1a;
+}
