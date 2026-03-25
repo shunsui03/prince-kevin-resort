@@ -234,3 +234,15 @@ footer {
     
     .hero-content h1 { font-size: 36px; }
 }
+/* Para sa Admin Button */
+.admin-btn {
+    background-color: #2c5e1a;
+    color: white !important;
+    padding: 8px 20px;
+    border-radius: 20px;
+}
+
+.admin-btn:hover {
+    background-color: #1e4412;
+    color: white !important;
+}
