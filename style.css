@@ -229,9 +229,21 @@ header {
 /* ========================================= */
 /* RATES SECTION - BALANCED HEIGHT           */
 /* ========================================= */
+/* ========================================= */
+/* RATES SECTION - TALL & CENTERED           */
+/* ========================================= */
 .rates-section {
     background: linear-gradient(135deg, #1a3a0f, #2c5e1a);
-    padding: 120px 0; /* Taas-baba spacing ng buong section */
+    padding: 120px 0;
+    
+    /* ITO ANG I-DAGDAG: Sasaklaw nito ang buong screen height 
+       kaya lalaki ang green background */
+    min-height: 100vh; 
+    
+    /* I-CENTER NATIN ANG CONTENT SA GITNA NG GREEN BACKGROUND */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Vertically center */
 }
 
 .rates-container {
@@ -239,43 +251,32 @@ header {
     flex-wrap: wrap;
     justify-content: center;
     gap: 30px;
+    width: 100%;
 }
 
 .rate-card {
     background: white;
-    padding: 50px 40px; /* Malaking padding para sa 'height' */
+    padding: 50px 40px;
     border-radius: 15px;
     flex: 1 1 300px;
     min-width: 300px;
-    /* ITO ANG KEY: Binigyan natin siya ng minimum height para tumayo */
-    min-height: 380px; 
     display: flex;
     flex-direction: column;
-    justify-content: center; /* I-center vertically ang text */
+    justify-content: center;
     position: relative;
     overflow: hidden;
     box-shadow: 0 20px 40px rgba(0,0,0,0.2);
     transition: transform 0.3s ease;
+    border-top: 6px solid #d4af37;
 }
 
 .rate-card:hover {
     transform: translateY(-10px);
 }
 
-/* Gold accent line on top */
-.rate-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 6px;
-    background: linear-gradient(90deg, #d4af37, #f5d76e);
-}
-
 .rate-card h3 {
     color: #1a3a0f;
-    font-size: 26px; /* Medyo malaki ang header */
+    font-size: 26px;
     margin-bottom: 30px;
     display: flex;
     align-items: center;
@@ -292,13 +293,13 @@ header {
 }
 
 .rate-card li {
-    padding: 15px 0; /* Mas malaking space sa pagitan ng prices */
+    padding: 15px 0;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
     align-items: center;
     color: #444;
-    font-size: 16px; /* Malinaw na size */
+    font-size: 16px;
 }
 
 .rate-card li:last-child {
@@ -307,14 +308,8 @@ header {
 
 .rate-card strong {
     color: #2c5e1a;
-    font-size: 18px; /* Pinataas natin ang price size */
+    font-size: 18px;
 }
-
-/* Responsive */
-@media (max-width: 768px) {
-    .rate-card {
-        min-height: auto
-
 /* ================================================== */
 /* BOOKING SECTION (Compact Form)                     */
 /* ================================================== */
