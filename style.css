@@ -82,20 +82,20 @@
         /* 10. BOOKING SECTION (UPDATED) */
        /* 10. BOOKING SECTION (OPTIMIZED FOR VISIBILITY) */
         /* 10. BOOKING SECTION (AYOS NA) */
+                /* 10. BOOKING SECTION (MAS MABABA NA) */
         .booking-section { 
-            padding: 80px 0 100px 0; /* Taas at Baba spacing */
+            padding: 80px 0 100px 0; 
             background-color: #f4f7f4; 
         }
 
-        /* ITO ANG NAGPABABA SA TITLE AT NAGTANGGAL NG LINE */
+        /* PINABABA ANG TITLE AT TINANGGAL ANG LINE */
         .booking-section .section-title {
-            margin-top: 40px; /* Ibinaba ang title ng 40px */
-            margin-bottom: 40px; /* Espasyo bago ang form */
+            margin-top: 100px; /* TAASAN ITO KUNG GUSTO PA NG MAS MABABA */
+            margin-bottom: 50px;
         }
 
-        /* TINANGGAL ANG YELLOW LINE DITO */
         .booking-section .section-title h2::after {
-            display: none; /* Tatanggalin ang yellow line */
+            display: none; /* Walang yellow line */
         }
 
         .booking-card-compact { 
@@ -138,10 +138,9 @@
         .form-group input:focus, .form-group select:focus { 
             border-color: #2c5e1a; 
             background-color: #fff; 
-            box-shadow: 0 0 0 4px rgba(44, 94, 26, 0.1); 
         }
 
-        /* TOTAL DISPLAY - COMPACT */
+        /* TOTAL DISPLAY */
         .form-total-display {
             grid-column: span 2;
             justify-self: center;
@@ -162,7 +161,7 @@
             font-family: 'Playfair Display', serif;
         }
 
-        /* BUTTON - CENTERED */
+        /* BUTTON */
         .btn-block {
             grid-column: span 2;
             justify-self: center;
@@ -172,7 +171,6 @@
             margin-top: 0; 
             font-size: 15px;
         }
-
         /* 11. FOOTER */
         footer { background-color: #111; color: white; text-align: center; padding: 60px 20px; }
         footer p { opacity: 0.6; margin-bottom: 20px; font-size: 14px; }
