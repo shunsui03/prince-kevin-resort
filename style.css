@@ -1,43 +1,317 @@
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <div class="section-title">
-                <h2>What We Offer</h2>
-            </div>
-            
-            <!-- Cards: 1, 2, 3 (Top Row) | 4, 5 (Bottom Row) -->
-            <div class="services-grid">
-                <!-- 1 -->
-                <div class="service-card">
-                    <i class="fas fa-swimming-pool"></i>
-                    <h3>Resort & Pools</h3>
-                    <p>Cool down in our crystal-clear swimming pools.</p>
-                </div>
-                <!-- 2 -->
-                <div class="service-card">
-                    <i class="fas fa-campground"></i>
-                    <h3>Camping Grounds</h3>
-                    <p>Sleep under the stars with our safe spots.</p>
-                </div>
-                <!-- 3 -->
-                <div class="service-card">
-                    <i class="fas fa-hiking"></i>
-                    <h3>ATV Adventure</h3>
-                    <p>Explore the hills with thrilling rides.</p>
-                </div>
+/* ================================================== */
+/* PRINCE KEVIN HILLS RESORT - FINAL STYLESHEET      */
+/* ================================================== */
 
-                <!-- 4 (Start ng 2nd Row) -->
-                <div class="service-card">
-                    <i class="fas fa-users"></i>
-                    <h3>Function Hall</h3>
-                    <p>Venue for events and celebrations.</p>
-                </div>
-                <!-- 5 -->
-                <div class="service-card">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Restaurant</h3>
-                    <p>Savor local dishes and drinks.</p>
-                </div>
-            </div>
-        </div>
-    </section>
+/* General Reset & Font Import */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* FIX FOR OVERLAP */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px; 
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffffff;
+    color: #333;
+    line-height: 1.6;
+}
+
+h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+/* ================================================== */
+/* NAVBAR                                             */
+/* ================================================== */
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 5%;
+    background-color: #2c5e1a;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.nav-links { list-style: none; display: flex; }
+.nav-links li { margin-left: 5px; }
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 500;
+    font-size: 15px;
+    padding: 8px 20px;
+    border-radius: 30px;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+.nav-links a:hover {
+    background-color: #d4af37;
+    color: white;
+}
+
+.admin-btn {
+    background-color: #d4af37 !important; 
+    color: white !important;
+    font-weight: 600; 
+}
+.admin-btn:hover { background-color: #c9a227 !important; }
+
+/* ================================================== */
+/* HERO SECTION                                       */
+/* ================================================== */
+header {
+    height: 100vh;
+    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+}
+
+.hero-content h1 { font-size: 64px; margin-bottom: 20px; }
+.hero-content p { font-size: 20px; margin-bottom: 30px; }
+
+.btn {
+    display: inline-block;
+    padding: 14px 32px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+}
+.btn-primary { background-color: #d4af37; color: #fff; }
+.btn-primary:hover { background-color: #c9a227; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
+
+/* ================================================== */
+/* SECTION GENERAL STYLES                             */
+/* ================================================== */
+.container { 
+    padding-top: 80px; 
+    padding-bottom: 80px; 
+    padding-left: 5%; 
+    padding-right: 5%;
+    max-width: 1200px; 
+    margin: 0 auto; 
+}
+
+.section-title { 
+    text-align: center; 
+    margin-bottom: 50px; 
+}
+.section-title h2 { font-size: 40px; color: #2c5e1a; margin-bottom: 10px; }
+.section-title p { color: #666; }
+.section-title.light h2, .section-title.light p { color: white; }
+
+/* ================================================== */
+/* ABOUT SECTION                                      */
+/* ================================================== */
+.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.about-text h3 { margin-bottom: 15px; color: #2c5e1a; }
+.about-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+
+/* ================================================== */
+/* GALLERY SECTION (Dark Green)                       */
+/* ================================================== */
+.gallery-section { 
+    background-color: #2c5e1a; 
+    padding: 80px 5%;
+}
+.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.gallery-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
+.gallery-item img:hover { transform: scale(1.05); }
+
+/* ================================================== */
+/* SERVICES SECTION (PYRAMID LAYOUT)                  */
+/* Layout: 3 sa taas, 2 sa baba (Centered)            */
+/* ================================================== */
+.services-section {
+    background-color: #e8f5e9;
+    padding: 0;
+}
+
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Eto ang nagce-center sa 2 items sa baba */
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.service-card {
+    background: white;
+    padding: 40px 20px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #eee;
+    transition: 0.3s;
+    width: 340px; /* Fixed width para maayos ang pyramind */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+}
+
+.service-card i { 
+    font-size: 40px; 
+    color: #2c5e1a; 
+    margin-bottom: 15px; 
+    display: block;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+    border-color: #2c5e1a;
+}
+
+/* ================================================== */
+/* RATES SECTION (3 COLUMN GRID - STRICT)             */
+/* Layout: 3 columns na pantay                        */
+/* ================================================== */
+.rates-section { 
+    background-color: #2c5e1a; 
+    padding: 80px 5%;
+}
+
+.rates-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 Columns lang lagi */
+    gap: 30px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.rate-card {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    width: 100%; /* Punuin ang grid space */
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    border-top: 5px solid #d4af37;
+    display: flex;
+    flex-direction: column;
+}
+
+.rate-card h3 { margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px; }
+.rate-card ul { list-style: none; flex-grow: 1; }
+.rate-card li { margin-bottom: 10px; border-bottom: 1px dashed #eee; padding-bottom: 5px; font-size: 15px; }
+
+/* ================================================== */
+/* BOOKING SECTION (COMPACT FORM)                     */
+/* ================================================== */
+.booking-section {
+    background-color: #e8f5e9;
+    padding: 0;
+}
+
+.booking-card-compact {
+    background: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    border: 1px solid #eee;
+    max-width: 800px; 
+    margin: 0 auto; 
+}
+
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px 30px;
+}
+
+.form-total-display, 
+.btn-block {
+    grid-column: 1 / -1;
+}
+
+.form-total-display {
+    margin-top: 10px;
+    padding: 20px;
+    background-color: #f0f7ec;
+    border-radius: 5px;
+    text-align: center;
+    border: 1px solid #2c5e1a;
+}
+
+.form-group label { 
+    display: block; 
+    margin-bottom: 8px; 
+    font-weight: 500; 
+    color: #555; 
+    font-size: 14px;
+}
+
+.booking-form-grid input, 
+.booking-form-grid select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    transition: 0.2s;
+    font-size: 14px;
+}
+
+.booking-form-grid input:focus, 
+.booking-form-grid select:focus { 
+    border-color: #2c5e1a; 
+    outline: none; 
+}
+
+/* ================================================== */
+/* FOOTER                                             */
+/* ================================================== */
+footer { background-color: #222; color: white; text-align: center; padding: 40px; }
+.social-icons a { color: #d4af37; font-size: 20px; margin: 0 10px; }
+
+/* ================================================== */
+/* RESPONSIVE DESIGN (Mobile)                         */
+/* ================================================== */
+@media (max-width: 1000px) {
+    /* Services: 2 columns sa tablet/mobile */
+    .services-grid { justify-content: center; }
+    .service-card { width: 45%; }
+}
+
+@media (max-width: 768px) {
+    .navbar { padding: 15px 20px; }
+    .nav-links { display: none; }
+    
+    .about-grid { grid-template-columns: 1fr; }
+    
+    /* Services: 1 column sa mobile */
+    .service-card { width: 100%; max-width: 400px; }
+    
+    /* Rates: 1 column sa mobile */
+    .rates-container { grid-template-columns: 1fr; }
+    
+    .gallery-grid { grid-template-columns: 1fr 1fr; }
+    
+    .hero-content h1 { font-size: 36px; }
+    
+    .booking-form-grid { grid-template-columns: 1fr; }
+}
