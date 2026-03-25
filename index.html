@@ -6,7 +6,6 @@
     <title>Prince Kevin Hills Resort</title>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     
     <!-- Firebase SDKs -->
@@ -51,13 +50,12 @@
                 <p>Nestled in the heart of the highlands, Prince Kevin Hills Resort offers a unique blend of adventure and relaxation. Whether you are looking to camp under the stars, take a dip in our pools, or simply enjoy the cool mountain breeze, we have something special for you.</p>
             </div>
             <div class="about-image">
-                <!-- PALITAN ANG SRC KUNG MAY SARILING PICTURE KA -->
                 <img src="https://images.unsplash.com/photo-1587061949409-02b41d3b6d58?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Resort View">
             </div>
         </div>
     </section>
 
-    <!-- Gallery Section (New!) -->
+    <!-- Gallery Section -->
     <section id="gallery" class="gallery-section">
         <div class="section-title light">
             <h2>Our Gallery</h2>
@@ -79,31 +77,46 @@
         </div>
     </section>
 
-    <!-- Services Section -->
+    <!-- Services Section (UPDATED: 5 Services) -->
     <section id="services" class="container">
         <div class="section-title">
             <h2>What We Offer</h2>
         </div>
         <div class="services-grid">
+            <!-- 1. Resort Pools -->
             <div class="service-card">
                 <i class="fas fa-swimming-pool"></i>
                 <h3>Resort & Pools</h3>
                 <p>Cool down in our crystal-clear swimming pools surrounded by nature.</p>
             </div>
+            <!-- 2. Camping Grounds -->
             <div class="service-card">
                 <i class="fas fa-campground"></i>
                 <h3>Camping Grounds</h3>
                 <p>Sleep under the stars with our safe and scenic camping spots.</p>
             </div>
+            <!-- 3. ATV Adventure -->
             <div class="service-card">
                 <i class="fas fa-hiking"></i>
                 <h3>ATV Adventure</h3>
                 <p>Explore the hills with our thrilling ATV rides.</p>
             </div>
+            <!-- 4. Function Hall (NEW) -->
+            <div class="service-card">
+                <i class="fas fa-users"></i>
+                <h3>Function Hall</h3>
+                <p>A perfect venue for events, team buildings, and celebrations.</p>
+            </div>
+            <!-- 5. Restaurant (NEW) -->
+            <div class="service-card">
+                <i class="fas fa-utensils"></i>
+                <h3>Restaurant</h3>
+                <p>Savor delicious local dishes and refreshing drinks.</p>
+            </div>
         </div>
     </section>
 
-    <!-- Rates Section (New!) -->
+    <!-- Rates Section -->
     <section id="rates" class="rates-section">
         <div class="section-title light">
             <h2>Rates & Packages</h2>
@@ -213,7 +226,7 @@
     </footer>
 
     <script>
-        // TODO: Ilagay dito ang Firebase Config mo (Copy paste mo dito mismo kung nawala)
+        // Firebase Config (Dapat same sa index.html)
         const firebaseConfig = {
         apiKey: "AIzaSyB97AOyincD1oiPtolcP0uQizyA9OoQYE8",
         authDomain: "prince-kevin-resort.firebaseapp.com",
@@ -222,14 +235,11 @@
         messagingSenderId: "889431153674",
         appId: "1:889431153674:web:f0008f479de3f64d6d93f3",
         measurementId: "G-JYEVSHYNZ8"
-    };
+      };
 
-        
-        // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
-        // Price Calculator Logic (Same as before)
         function updatePrice() {
             let total = 0;
             const type = document.getElementById('bookingType').value;
@@ -252,7 +262,6 @@
             document.getElementById('totalPrice').innerText = total.toLocaleString('en-US');
         }
 
-        // Toggle Form Visibility
         document.getElementById('bookingType').addEventListener('change', function() {
             if (this.value === 'resort') {
                 document.getElementById('resortOptions').style.display = 'block';
@@ -264,10 +273,8 @@
             updatePrice();
         });
 
-        // Initial calc
         updatePrice();
 
-        // Form Submission
         document.getElementById('reservationForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.querySelector('button[type="submit"]');
