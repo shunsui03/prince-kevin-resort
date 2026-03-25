@@ -148,72 +148,75 @@
     </section>
 
     <!-- Booking Section -->
+        <!-- Booking Section -->
     <section id="booking" class="booking-section">
-        <div class="section-title">
-            <h2>Book Your Adventure</h2>
-        </div>
-        <div class="booking-wrapper">
-            <div class="booking-info">
-                <h3>Ready to book?</h3>
-                <p>Fill out the form and we will confirm your reservation shortly.</p>
-                <br>
-                <p><i class="fas fa-map-marker-alt"></i> [Lagay ang address dito]</p>
-                <p><i class="fas fa-phone"></i> +63 912 345 6789</p>
+        <div class="container">
+            <div class="section-title">
+                <h2>Book Your Adventure</h2>
             </div>
-            <form id="reservationForm" class="booking-form">
-                <label>Full Name:</label>
-                <input type="text" id="name" required>
+            
+            <div class="booking-card-compact">
+                <form id="reservationForm" class="booking-form-grid">
+                    <!-- Row 1: Name & Contact -->
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="name" placeholder="Juan Dela Cruz" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Contact Number</label>
+                        <input type="text" id="contact" placeholder="09123456789" required>
+                    </div>
 
-                <label>Contact Number:</label>
-                <input type="text" id="contact" required>
+                    <!-- Row 2: Type & Date of Visit -->
+                    <div class="form-group">
+                        <label>Type of Booking</label>
+                        <select id="bookingType" onchange="updatePrice()">
+                            <option value="resort">Resort</option>
+                            <option value="campsite">Campsite</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Date of Visit</label>
+                        <input type="date" id="visitDate" required>
+                    </div>
 
-                <label>Type of Booking:</label>
-                <select id="bookingType" onchange="updatePrice()">
-                    <option value="resort">Resort</option>
-                    <option value="campsite">Campsite</option>
-                </select>
+                    <!-- Row 3: Resort Options (Visible by default) -->
+                    <div class="form-group" id="resortHeadsGroup">
+                        <label>Number of Heads (250/head)</label>
+                        <input type="number" id="resortHeads" value="1" min="1" onchange="updatePrice()">
+                    </div>
+                    <div class="form-group" id="resortScheduleGroup">
+                        <label>Schedule</label>
+                        <select id="resortSchedule" onchange="updatePrice()">
+                            <option value="day">Day Tour (8AM-6PM) - ₱10,000</option>
+                            <option value="night">Night Tour (6PM-6AM) - ₱8,000</option>
+                        </select>
+                    </div>
 
-                <!-- Resort Options -->
-                <div id="resortOptions">
-                    <label>Number of Heads (250/head):</label>
-                    <input type="number" id="resortHeads" value="1" min="1" onchange="updatePrice()">
+                    <!-- Row 3: Campsite Options (Hidden by default) -->
+                    <div class="form-group" id="campHeadsGroup" style="display:none;">
+                        <label>Number of Heads (350/head)</label>
+                        <input type="number" id="campHeads" value="1" min="1" onchange="updatePrice()">
+                    </div>
+                    <div class="form-group" id="tentTypeGroup" style="display:none;">
+                        <label>Tent Rental</label>
+                        <select id="tentType" onchange="updatePrice()">
+                            <option value="0">No Tent</option>
+                            <option value="450">Small - ₱450</option>
+                            <option value="650">Medium - ₱650</option>
+                            <option value="900">Large - ₱900</option>
+                            <option value="1200">XL - ₱1,200</option>
+                        </select>
+                    </div>
+
+                    <!-- Total & Submit -->
+                    <div class="form-total-display">
+                        <h3>Total: ₱ <span id="totalPrice">0.00</span></h3>
+                    </div>
                     
-                    <label>Schedule:</label>
-                    <select id="resortSchedule" onchange="updatePrice()">
-                        <option value="day">Day Tour (8AM-6PM) - ₱10,000</option>
-                        <option value="night">Night Tour (6PM-6AM) - ₱8,000</option>
-                    </select>
-                </div>
-
-                <!-- Campsite Options -->
-                <div id="campsiteOptions" style="display:none;">
-                    <label>Number of Heads (350/head):</label>
-                    <input type="number" id="campHeads" value="1" min="1" onchange="updatePrice()">
-                    
-                    <label>Tent Rental:</label>
-                    <select id="tentType" onchange="updatePrice()">
-                        <option value="0">No Tent (-)</option>
-                        <option value="450">Small Tent - ₱450</option>
-                        <option value="650">Medium Tent - ₱650</option>
-                        <option value="900">Large Tent - ₱900</option>
-                        <option value="1200">Extra Large Tent - ₱1,200</option>
-                    </select>
-                </div>
-
-                <!-- ATV Add-on -->
-                <label>ATV Ride Add-on:</label>
-                <select id="atvOption" onchange="updatePrice()">
-                    <option value="0">None</option>
-                    <option value="200">20 Minutes - ₱200</option>
-                    <option value="400">40 Minutes - ₱400</option>
-                </select>
-
-                <div class="total-display">
-                    <h3>Total: ₱ <span id="totalPrice">0.00</span></h3>
-                </div>
-
-                <button type="submit" class="btn btn-primary btn-block">Submit Booking</button>
-            </form>
+                    <button type="submit" class="btn btn-primary btn-block">Submit Booking</button>
+                </form>
+            </div>
         </div>
     </section>
 
@@ -225,25 +228,28 @@
         </div>
     </footer>
 
-    <script>
-        // Firebase Config (Dapat same sa index.html)
+        <script>
+        // Firebase Config
         const firebaseConfig = {
-        apiKey: "AIzaSyB97AOyincD1oiPtolcP0uQizyA9OoQYE8",
-        authDomain: "prince-kevin-resort.firebaseapp.com",
-        projectId: "prince-kevin-resort",
-        storageBucket: "prince-kevin-resort.firebasestorage.app",
-        messagingSenderId: "889431153674",
-        appId: "1:889431153674:web:f0008f479de3f64d6d93f3",
-        measurementId: "G-JYEVSHYNZ8"
-      };
+            apiKey: "AIzaSyB97AOyincD1oiPtolcP0uQizyA9OoQYE8",
+            authDomain: "prince-kevin-resort.firebaseapp.com",
+            projectId: "prince-kevin-resort",
+            storageBucket: "prince-kevin-resort.firebasestorage.app",
+            messagingSenderId: "889431153674",
+            appId: "1:889431153674:web:f0008f479de3f64d6d93f3",
+            measurementId: "G-JYEVSHYNZ8"
+        };
 
         firebase.initializeApp(firebaseConfig);
         const db = firebase.firestore();
 
+        // Set today's date as default
+        document.getElementById('visitDate').valueAsDate = new Date();
+
+        // Price Calculator Logic
         function updatePrice() {
             let total = 0;
             const type = document.getElementById('bookingType').value;
-            const atv = parseInt(document.getElementById('atvOption').value);
 
             if (type === 'resort') {
                 const heads = parseInt(document.getElementById('resortHeads').value) || 0;
@@ -258,23 +264,33 @@
                 total = entrance + tent;
             }
 
-            total += atv;
             document.getElementById('totalPrice').innerText = total.toLocaleString('en-US');
         }
 
+        // Toggle Form Visibility (Show/Hide fields based on Type)
         document.getElementById('bookingType').addEventListener('change', function() {
             if (this.value === 'resort') {
-                document.getElementById('resortOptions').style.display = 'block';
-                document.getElementById('campsiteOptions').style.display = 'none';
+                // Show Resort Fields
+                document.getElementById('resortHeadsGroup').style.display = 'block';
+                document.getElementById('resortScheduleGroup').style.display = 'block';
+                // Hide Camp Fields
+                document.getElementById('campHeadsGroup').style.display = 'none';
+                document.getElementById('tentTypeGroup').style.display = 'none';
             } else {
-                document.getElementById('resortOptions').style.display = 'none';
-                document.getElementById('campsiteOptions').style.display = 'block';
+                // Hide Resort Fields
+                document.getElementById('resortHeadsGroup').style.display = 'none';
+                document.getElementById('resortScheduleGroup').style.display = 'none';
+                // Show Camp Fields
+                document.getElementById('campHeadsGroup').style.display = 'block';
+                document.getElementById('tentTypeGroup').style.display = 'block';
             }
             updatePrice();
         });
 
+        // Initial calculation
         updatePrice();
 
+        // Form Submission
         document.getElementById('reservationForm').addEventListener('submit', async (e) => {
             e.preventDefault();
             const submitBtn = document.querySelector('button[type="submit"]');
@@ -284,24 +300,34 @@
             const type = document.getElementById('bookingType').value;
             const name = document.getElementById('name').value;
             const contact = document.getElementById('contact').value;
-            const atvText = document.getElementById('atvOption').options[document.getElementById('atvOption').selectedIndex].text;
             const total = document.getElementById('totalPrice').innerText;
+            const visitDate = document.getElementById('visitDate').value; // KUHIN ANG DATE
 
             let bookingDetails = {};
 
             if(type === 'resort') {
                 bookingDetails = {
-                    name: name, contact: contact, type: 'Resort',
+                    name: name,
+                    contact: contact,
+                    type: 'Resort',
                     heads: document.getElementById('resortHeads').value,
                     schedule: document.getElementById('resortSchedule').options[document.getElementById('resortSchedule').selectedIndex].text,
-                    atv: atvText, total: total, status: 'Pending', timestamp: new Date()
+                    total: total,
+                    visitDate: visitDate, // SAVE DATE
+                    status: 'Pending',
+                    timestamp: new Date()
                 };
             } else {
                 bookingDetails = {
-                    name: name, contact: contact, type: 'Campsite',
+                    name: name,
+                    contact: contact,
+                    type: 'Campsite',
                     heads: document.getElementById('campHeads').value,
                     tent: document.getElementById('tentType').options[document.getElementById('tentType').selectedIndex].text,
-                    atv: atvText, total: total, status: 'Pending', timestamp: new Date()
+                    total: total,
+                    visitDate: visitDate, // SAVE DATE
+                    status: 'Pending',
+                    timestamp: new Date()
                 };
             }
 
@@ -309,6 +335,7 @@
                 await db.collection('bookings').add(bookingDetails);
                 alert('Booking submitted successfully!');
                 document.getElementById('reservationForm').reset();
+                document.getElementById('visitDate').valueAsDate = new Date(); // Reset date to today
                 updatePrice();
             } catch (error) {
                 console.error("Error: ", error);
