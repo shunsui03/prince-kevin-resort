@@ -12,7 +12,7 @@
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); }
 
     /* 3. NAVIGATION BAR - FINAL FIX FOR 1600x900 */
-   .navbar { 
+    .navbar { 
         background: linear-gradient(to right, #1a3a0f, #2c5e1a); 
         box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
         position: fixed; 
@@ -20,8 +20,11 @@
         top: 0; 
         left: 0; 
         z-index: 1000;
-        padding: 15px 0; /* Vertical padding only */
+        padding: 15px 0;
         box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
     .logo { 
@@ -33,7 +36,11 @@
         align-items: center; 
         gap: 8px; 
         white-space: nowrap;
-        margin-left: 40px; /* Safety gap from left edge */
+        margin-left: 40px;
+    }
+    .logo i { 
+        color: #d4af37; 
+        font-size: 18px; 
     }
 
     .nav-links { 
@@ -41,10 +48,12 @@
         display: flex; 
         align-items: center; 
         gap: 10px; 
-        margin-right: 40px; /* Safety gap from right edge - FIXES COLLISION */
+        margin-right: 40px;
         padding: 0;
     }
-
+    .nav-links li { 
+        margin-left: 0; 
+    }
     .nav-links a { 
         text-decoration: none; 
         color: #fff; 
@@ -55,25 +64,16 @@
         transition: 0.3s; 
         white-space: nowrap;
     }
-
     .nav-links a:hover { 
         background-color: rgba(255,255,255,0.15); 
         color: #d4af37; 
     }
-
     .admin-btn { 
         background-color: #d4af37 !important; 
         color: #1a3a0f !important; 
         font-weight: 700; 
         padding: 8px 18px !important;
         box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    }
-
-    /* 12. MOBILE ADJUSTMENTS FOR NAVBAR */
-    @media (max-width: 1200px) {
-        .logo { margin-left: 20px; }
-        .nav-links { margin-right: 20px; gap: 5px; }
-        .nav-links a { padding: 8px 10px; font-size: 12px; }
     }
 
     /* 4. HERO SECTION */
@@ -150,16 +150,45 @@
     /* 12. ANIMATIONS & MOBILE */
     @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
     
-    @media (max-width: 1024px) { .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; } }
+    @media (max-width: 1200px) {
+        .logo { margin-left: 20px; }
+        .nav-links { margin-right: 20px; gap: 5px; }
+        .nav-links a { padding: 8px 10px; font-size: 12px; }
+    }
+    
+    @media (max-width: 1024px) { 
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+    }
     
     @media (max-width: 900px) { 
-        .navbar { padding: 8px 4%; flex-wrap: wrap; gap: 5px; justify-content: center; }
-        .logo { font-size: 16px; }
-        .logo i { font-size: 14px; }
-        .nav-links { flex-wrap: wrap; justify-content: center; gap: 5px; }
-        .nav-links a { padding: 5px 8px; font-size: 11px; }
-        .admin-btn { padding: 5px 10px !important; font-size: 11px !important; }
-        .about-grid { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+        .navbar { 
+            flex-direction: column;
+            padding: 12px 4%;
+            gap: 10px;
+        }
+        .logo { 
+            margin-left: 0;
+            font-size: 18px;
+        }
+        .nav-links { 
+            margin-right: 0;
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 8px; 
+        }
+        .nav-links a { 
+            padding: 6px 12px; 
+            font-size: 12px; 
+        }
+        .admin-btn { 
+            padding: 6px 14px !important; 
+            font-size: 12px !important; 
+        }
+        .about-grid { 
+            grid-template-columns: 1fr; 
+            text-align: center; 
+            gap: 40px; 
+        }
         .about-image::before { display: none; }
         .service-card, .rate-card { flex: 0 1 100%; max-width: 100%; }
     }
@@ -171,13 +200,35 @@
         .form-total-display, .btn-block { grid-column: span 1; width: 100%; }
         .booking-card-compact { padding: 20px; }
         .section-title h2 { font-size: 30px; }
+        .section-title p { font-size: 14px; }
+        .gallery-item { height: 200px; }
     }
     
     @media (max-width: 480px) {
         .container { padding: 0 4%; }
         .hero-content h1 { font-size: 32px; }
-        .btn { padding: 12px 30px; font-size: 12px; }
+        .hero-content p { font-size: 14px; }
+        .btn { padding: 10px 25px; font-size: 12px; }
         .gallery-grid { grid-template-columns: 1fr; }
         .gallery-item { height: 220px; }
+        .section-title h2 { font-size: 24px; }
+        .section-title { margin-bottom: 30px; }
+        #about { padding: 90px 0 50px 0; }
+        .about-text h3 { font-size: 24px; }
+        .about-image img { height: 250px; }
+        .service-card { padding: 25px 15px; }
+        .rate-card { padding: 25px; }
+        .booking-card-compact { padding: 15px; margin: 0 10px; }
+        .form-total-display h3 { font-size: 16px; }
+        footer p { font-size: 12px; }
+        .social-icons a { width: 35px; height: 35px; line-height: 35px; font-size: 16px; margin: 0 8px; }
+    }
+    
+    @media (max-width: 320px) {
+        .hero-content h1 { font-size: 28px; }
+        .section-title h2 { font-size: 22px; }
+        .nav-links a { padding: 4px 8px; font-size: 10px; }
+        .logo { font-size: 16px; }
+        .gallery-item { height: 180px; }
     }
 </style>
