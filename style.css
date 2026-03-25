@@ -132,14 +132,58 @@ header {
 /* ================================================== */
 /* GALLERY SECTION (Dark Green)                       */
 /* ================================================== */
-.gallery-section { 
-    background-color: #2c5e1a; 
-    /* Padding nasa container na loob */
+/* ========================================= */
+/* GALLERY SECTION - FULL SCREEN HEIGHT FIX  */
+/* ========================================= */
+.gallery-section {
+    background-color: #2c5e1a;
+    min-height: 100vh; /* ITO ANG NASA FIX: Sasaklaw nito ang buong screen height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* I-center vertically ang content */
+    padding: 100px 0; /* Space taas at baba */
 }
 
-.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-.gallery-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
-.gallery-item img:hover { transform: scale(1.05); }
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    width: 100%;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.gallery-item img {
+    width: 100%;
+    /* TAASAN NATIN ANG IMAGE HEIGHT para mapuno ang space */
+    height: 450px; 
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+/* Hover Effect */
+.gallery-item:hover img {
+    transform: scale(1.05);
+}
+
+.gallery-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(transparent 60%, rgba(0,0,0,0.7));
+    opacity: 0;
+    transition: 0.3s;
+}
+
+.gallery-item:hover::after {
+    opacity: 1;
+}
 
 /* ================================================== */
 /* SERVICES SECTION - PYRAMID LAYOUT (3 SA TAAS, 2 SA BABA) */
