@@ -1,4 +1,4 @@
-/* General Reset & Font Import */
+/* 1. GENERAL RESET & FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
@@ -7,10 +7,9 @@
     box-sizing: border-box;
 }
 
-/* FIX FOR OVERLAP */
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px; 
+    scroll-padding-top: 80px; 
 }
 
 body {
@@ -18,310 +17,170 @@ body {
     background-color: #ffffff;
     color: #333;
     line-height: 1.6;
+    overflow-x: hidden; /* Iwas sa horizontal scroll */
 }
 
 h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-/* NAVBAR */
+/* 2. THE GLOBAL CONTAINER (ITO ANG MAGPAPANTAY SA LAHAT) */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 5%;
+    width: 100%;
+}
+
+/* 3. NAVBAR FIX (ADMIN BUTTON VISIBILITY) */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 5%;
+    padding: 10px 5%;
     background-color: #2c5e1a;
     box-shadow: 0 2px 10px rgba(0,0,0,0.1);
     position: fixed;
     width: 100%;
     top: 0;
+    left: 0;
     z-index: 1000;
-    left: 0; /* SIGURADUHIN NA NASA LEFT 0 */
-}
-
-.logo {
-    font-size: 24px;
-    font-weight: 700;
-    color: #fff;
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }
 
 .nav-links { 
     list-style: none; 
     display: flex; 
-    align-items: center; /* Para pantay-pantay silang lahat sa gitna vertical */
+    align-items: center; 
 }
-.nav-links li { 
-    margin-left: 5px; /* Binawasan ko mula 5px para mas dikit nang konti */
-}
+
+.nav-links li { margin-left: 5px; }
+
 .nav-links a {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
-    font-size: 14px; /* Binabaan ko ng 1px (dating 15px) para mas safe */
-    padding: 8px 12px; /* ETO ANG IMPORTANTE: Ginawang 12px (dating 20px) */
+    font-size: 14px;
+    padding: 8px 12px;
     border-radius: 30px;
-    border: 2px solid transparent;
-    transition: all 0.3s ease;
-    white-space: nowrap; /* Pinipigilan nito na mag-break into 2 lines yung text */
+    transition: 0.3s;
+    white-space: nowrap;
 }
+
 .nav-links a:hover {
     background-color: #d4af37;
-    color: white;
 }
 
 .admin-btn {
     background-color: #d4af37 !important;
-    color: white !important;
     font-weight: 600;
-    margin-left: 15px; /* Dagdag na space para hindi dikit sa 'Location' */
+    margin-left: 15px;
 }
-.admin-btn:hover { background-color: #c9a227 !important; }
 
-/* HERO SECTION */
-header {
-    height: 100vh;
-    background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://images.unsplash.com/photo-1510312305653-8ed496efae75?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+/* 4. SECTION TITLES (PERFECTLY CENTERED) */
+.section-title {
     text-align: center;
-    color: white;
+    margin-bottom: 50px;
+    width: 100%;
 }
 
-.hero-content h1 { font-size: 64px; margin-bottom: 20px; }
-.hero-content p { font-size: 20px; margin-bottom: 30px; }
-
-.btn {
-    display: inline-block;
-    padding: 14px 32px;
-    border-radius: 50px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    border: none;
-}
-.btn-primary { background-color: #d4af37; color: #fff; }
-.btn-primary:hover { background-color: #c9a227; transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4); }
-
-/* SECTION GENERAL STYLES */
-.container { 
-    padding-top: 80px; 
-    padding-bottom: 80px; 
-    padding-left: 5%; 
-    padding-right: 5%;
-    max-width: 1200px; 
-    margin: 0 auto; 
+.section-title h2 {
+    font-size: 36px;
+    color: #2c5e1a;
+    margin-bottom: 10px;
 }
 
-.section-title { 
-    text-align: center; 
-    margin-bottom: 50px; 
-    width: 100%;       /* Pinaka-importante: Para sakop ang buong width */
-    display: block;    /* Para siguradong hindi siya nakikipag-agawan sa space */
-}
-.section-title h2 { 
-    font-size: 40px; 
-    color: #2c5e1a; 
-    margin-bottom: 10px; 
-    width: 100%;       /* Double check para sa h2 */
-}
-.section-title p { 
-    color: #666; 
-    max-width: 600px;  /* Para hindi sobrang haba ng text sa isang line */
-    margin: 0 auto;    /* Eto ang mag-gigitna sa paragraph text */
-}
-.section-title.light h2, .section-title.light p { color: white; }
+.section-title.light h2, 
+.section-title.light p { color: white; }
 
-/* ABOUT SECTION */
-.about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
-.about-text h3 { margin-bottom: 15px; color: #2c5e1a; }
-.about-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-
-/* GALLERY SECTION */
-.gallery-section { 
-    background-color: #2c5e1a; 
-    padding: 80px 5%;
+/* 5. GALLERY SECTION (PANTAY-PANTAY) */
+.gallery-section {
+    background-color: #2c5e1a;
+    padding: 80px 0;
 }
-.gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-.gallery-item img { 
-    width: 100%; 
-    height: 250px; 
-    object-fit: cover; 
-    border-radius: 8px; 
-    transition: transform 0.3s; 
-    cursor: pointer;
-    /* DAGDAG ITO: Para makita ang shape kahit puti ang image */
-    border: 1px solid rgba(0,0,0,0.1); 
-    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-}.gallery-item img:hover { transform: scale(1.05); }
 
-/* SERVICES SECTION - PYRAMID LAYOUT (FIXED) */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px; /* Fixed height para pantay lahat */
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.1);
+    transition: 0.3s;
+}
+
+/* 6. SERVICES SECTION (3-2 PYRAMID LAYOUT) */
 .services-section {
     background-color: #e8f5e9;
-    padding: 80px 5%; /* Added padding here directly */
+    padding: 80px 0;
 }
 
 .services-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; /* Ito ang mag-gigitna sa bottom row */
-    gap: 20px;
-    max-width: 1200px;
-    margin: 0 auto;
+    justify-content: center;
+    gap: 25px;
 }
 
 .service-card {
     background: white;
-    padding: 30px 20px;
+    padding: 40px 20px;
     text-align: center;
     border-radius: 10px;
-    border: 1px solid #eee;
-    transition: 0.3s;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
-
-    /* Eto ang magic: */
-    /* Sa Desktop, kukuha siya ng space para sa 3 columns */
-    flex: 0 1 calc(33.333% - 20px); 
-    min-width: 250px; /* Binabaan ko para hindi agad mag-stack sa tablet */
+    transition: 0.3s;
+    /* Eto ang magic for 3-2: */
+    flex: 0 1 calc(31% - 10px); 
+    min-width: 280px;
 }
 
 .service-card i { 
     font-size: 40px; 
     color: #2c5e1a; 
     margin-bottom: 15px; 
-    display: block;
+    display: block; 
 }
 
 .service-card:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 30px rgba(0,0,0,0.1);
-    border-color: #2c5e1a;
+    border: 1px solid #2c5e1a;
 }
 
-@media (max-width: 768px) {
-    .service-card {
-        width: 100%; /* Magiging 1 column na lang sa phone */
-    }
-}
-
-/* RATES SECTION - 3 COLUMN GRID */
-.rates-section { 
-    background-color: #2c5e1a; 
-    padding: 80px 5%;
+/* 7. RATES SECTION (3 COLUMNS) */
+.rates-section {
+    background-color: #2c5e1a;
+    padding: 80px 0;
 }
 
 .rates-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    max-width: 1100px;
-    margin: 0 auto;
+    gap: 20px;
 }
 
 .rate-card {
     background: white;
     padding: 30px;
     border-radius: 10px;
-    
-    /* ETO ANG AYOS: 32% width para 3 columns */
-    width: 32%;
+    flex: 0 1 calc(32% - 10px);
     min-width: 300px;
-
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-top: 5px solid #d4af37;
 }
 
-.rate-card h3 { margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px; }
-.rate-card ul { list-style: none; }
-.rate-card li { margin-bottom: 10px; border-bottom: 1px dashed #eee; padding-bottom: 5px; font-size: 15px; }
-
-/* BOOKING SECTION */
-.booking-section {
-    background-color: #e8f5e9;
-    padding: 80px 5%;
-}
-
-.booking-card-compact {
-    background: white;
-    padding: 40px;
-    border-radius: 15px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
-    border: 1px solid #eee;
-    max-width: 800px; 
-    margin: 0 auto; 
-}
-
-.booking-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px 30px;
-}
-
-.form-total-display, 
-.btn-block {
-    grid-column: 1 / -1;
-}
-
-.form-total-display {
-    margin-top: 10px;
-    padding: 20px;
-    background-color: #f0f7ec;
-    border-radius: 5px;
-    text-align: center;
-    border: 1px solid #2c5e1a;
-}
-
-.form-group label { 
-    display: block; 
-    margin-bottom: 8px; 
-    font-weight: 500; 
-    color: #555; 
-    font-size: 14px;
-}
-
-.booking-form-grid input, 
-.booking-form-grid select {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
-    transition: 0.2s;
-    font-size: 14px;
-}
-
-.booking-form-grid input:focus, 
-.booking-form-grid select:focus { 
-    border-color: #2c5e1a; 
-    outline: none; 
-}
-
-/* FOOTER */
-footer { background-color: #222; color: white; text-align: center; padding: 40px; }
-.social-icons a { color: #d4af37; font-size: 20px; margin: 0 10px; }
-
-/* RESPONSIVE DESIGN */
+/* 8. MOBILE RESPONSIVE */
 @media (max-width: 900px) {
-    /* Mag-ssingle column sa tablet/mobile */
     .service-card, .rate-card {
-        width: 100%;
+        flex: 0 1 100%;
+    }
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
 @media (max-width: 768px) {
-    .navbar { padding: 15px 20px; }
-    .nav-links { display: none; }
-    
-    .about-grid { grid-template-columns: 1fr; }
-    
-    .gallery-grid { grid-template-columns: 1fr 1fr; }
-    
-    .hero-content h1 { font-size: 36px; }
-    
-    .booking-form-grid { grid-template-columns: 1fr; }
+    .nav-links { display: none; } /* Pwede mo itong palitan ng hamburger menu later */
+    .hero-content h1 { font-size: 32px; }
 }
