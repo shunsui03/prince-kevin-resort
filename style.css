@@ -12,11 +12,7 @@
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); }
 
     /* 3. NAVIGATION BAR - FINAL FIX FOR 1600x900 */
-    .navbar { 
-        display: flex; 
-        justify-content: space-between; 
-        align-items: center; 
-        padding: 10px 4%; 
+   .navbar { 
         background: linear-gradient(to right, #1a3a0f, #2c5e1a); 
         box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
         position: fixed; 
@@ -24,57 +20,60 @@
         top: 0; 
         left: 0; 
         z-index: 1000;
-        box-sizing: border-box; /* Ensures padding doesn't add to width */
+        padding: 15px 0; /* Vertical padding only */
+        box-sizing: border-box;
     }
-   .logo { 
+    
+    .logo { 
         color: white; 
-        font-size: clamp(14px, 1.5vw, 18px); /* Scales font based on screen width */
+        font-size: 20px; 
         font-weight: 700; 
         font-family: 'Playfair Display', serif; 
         display: flex; 
         align-items: center; 
-        gap: 6px; 
+        gap: 8px; 
         white-space: nowrap;
-        flex-shrink: 0; /* Prevents logo from squishing */
+        margin-left: 40px; /* Safety gap from left edge */
     }
-   .logo i { 
-        color: #d4af37; 
-        font-size: 16px; 
-    }
-   .nav-links { 
+
+    .nav-links { 
         list-style: none; 
         display: flex; 
         align-items: center; 
-        gap: 5px; /* Slightly more breathing room but still compact */
-        margin: 0;
+        gap: 10px; 
+        margin-right: 40px; /* Safety gap from right edge - FIXES COLLISION */
         padding: 0;
-        max-width: 100%;
     }
-    .nav-links li { 
-        margin: 0; 
-    }
+
     .nav-links a { 
         text-decoration: none; 
         color: #fff; 
         font-weight: 500; 
-        font-size: clamp(10px, 1vw, 13px); /* Fluid typography */
-        padding: 6px 12px; 
+        font-size: 13px; 
+        padding: 8px 14px; 
         border-radius: 30px; 
         transition: 0.3s; 
         white-space: nowrap;
     }
+
     .nav-links a:hover { 
         background-color: rgba(255,255,255,0.15); 
         color: #d4af37; 
     }
+
     .admin-btn { 
         background-color: #d4af37 !important; 
         color: #1a3a0f !important; 
         font-weight: 700; 
-        white-space: nowrap;
-        margin-left: 5px !important; /* Separation from other links */
-        padding: 6px 15px !important;
-        border-radius: 20px !important;
+        padding: 8px 18px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* 12. MOBILE ADJUSTMENTS FOR NAVBAR */
+    @media (max-width: 1200px) {
+        .logo { margin-left: 20px; }
+        .nav-links { margin-right: 20px; gap: 5px; }
+        .nav-links a { padding: 8px 10px; font-size: 12px; }
     }
 
     /* 4. HERO SECTION */
