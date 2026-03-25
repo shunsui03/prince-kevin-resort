@@ -52,7 +52,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     align-items: center; /* Para pantay-pantay silang lahat sa gitna vertical */
 }
 .nav-links li { 
-    margin-left: 2px; /* Binawasan ko mula 5px para mas dikit nang konti */
+    margin-left: 5px; /* Binawasan ko mula 5px para mas dikit nang konti */
 }
 .nav-links a {
     text-decoration: none;
@@ -121,9 +121,20 @@ header {
 .section-title { 
     text-align: center; 
     margin-bottom: 50px; 
+    width: 100%;       /* Pinaka-importante: Para sakop ang buong width */
+    display: block;    /* Para siguradong hindi siya nakikipag-agawan sa space */
 }
-.section-title h2 { font-size: 40px; color: #2c5e1a; margin-bottom: 10px; }
-.section-title p { color: #666; }
+.section-title h2 { 
+    font-size: 40px; 
+    color: #2c5e1a; 
+    margin-bottom: 10px; 
+    width: 100%;       /* Double check para sa h2 */
+}
+.section-title p { 
+    color: #666; 
+    max-width: 600px;  /* Para hindi sobrang haba ng text sa isang line */
+    margin: 0 auto;    /* Eto ang mag-gigitna sa paragraph text */
+}
 .section-title.light h2, .section-title.light p { color: white; }
 
 /* ABOUT SECTION */
@@ -137,8 +148,17 @@ header {
     padding: 80px 5%;
 }
 .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
-.gallery-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
-.gallery-item img:hover { transform: scale(1.05); }
+.gallery-item img { 
+    width: 100%; 
+    height: 250px; 
+    object-fit: cover; 
+    border-radius: 8px; 
+    transition: transform 0.3s; 
+    cursor: pointer;
+    /* DAGDAG ITO: Para makita ang shape kahit puti ang image */
+    border: 1px solid rgba(0,0,0,0.1); 
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}.gallery-item img:hover { transform: scale(1.05); }
 
 /* SERVICES SECTION - PYRAMID LAYOUT (FIXED) */
 .services-section {
