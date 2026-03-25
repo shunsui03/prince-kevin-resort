@@ -184,3 +184,89 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     .nav-links { display: none; } /* Pwede mo itong palitan ng hamburger menu later */
     .hero-content h1 { font-size: 32px; }
 }
+
+/* --- BOOKING SECTION FIX --- */
+.booking-section {
+    padding: 80px 0;
+    background-color: #f4f7f4; /* Light green background */
+}
+
+.booking-card-compact {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Hahatiin sa dalawang column */
+    gap: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-group label {
+    font-weight: 600;
+    color: #2c5e1a;
+    font-size: 14px;
+}
+
+.form-group input, 
+.form-group select {
+    padding: 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    outline: none;
+    transition: 0.3s;
+}
+
+.form-group input:focus, 
+.form-group select:focus {
+    border-color: #2c5e1a;
+    box-shadow: 0 0 5px rgba(44, 94, 26, 0.2);
+}
+
+/* Total Display Styling */
+.form-total-display {
+    grid-column: span 2; /* Occupy full width */
+    background: #2c5e1a;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin: 10px 0;
+}
+
+.form-total-display h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+}
+
+/* Button Styling */
+.btn-block {
+    grid-column: span 2;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .booking-form-grid {
+        grid-template-columns: 1fr; /* Isang column na lang kapag CP gamit */
+    }
+    .form-total-display, .btn-block {
+        grid-column: span 1;
+    }
+}
