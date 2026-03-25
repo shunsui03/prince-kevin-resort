@@ -104,7 +104,7 @@
 
         .form-total-display h3 {
             margin: 0;
-            font-size: 22px; /* Kaunti lang ang font size */
+            font-size: 24px; /* Kaunti lang ang font size */
             font-family: 'Playfair Display', serif;
         }
 
@@ -113,9 +113,9 @@
             grid-column: span 2;
             justify-self: center; /* I-CENTER SA GITNA */
             width: auto; /* HINDI FULL WIDTH */
-            min-width: 280px; /* Tamang lapad */
-            padding: 16px 40px; /* Magandang padding */
-            margin-top: 10px;
+            min-width: 250px; /* Sakto lang na lapad para clickable */
+            padding: 14px 50px; /* Malapad sa left/right para mukhang button */
+            margin-top: 5px;
         }
 
         /* 11. FOOTER */
