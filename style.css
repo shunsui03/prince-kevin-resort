@@ -118,7 +118,7 @@
 .form-group label { 
     font-weight: 600; 
     color: #2c5e1a; 
-    font-size: 17px; /* Bahagyang mas maliit */
+    font-size: 13px; /* Bahagyang mas maliit */
 }
 
 .form-group input, .form-group select { 
@@ -127,7 +127,7 @@
     border-radius: 8px; 
     font-family: 'Poppins', sans-serif; 
     transition: 0.3s; 
-    font-size: 14px; 
+    font-size: 17px; 
     background-color: #fcfcfc; 
 }
 
