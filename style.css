@@ -1,4 +1,4 @@
-/* 1. GENERAL RESET & FONTS */
+/* 1. RESET & CORE FONTS */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
@@ -9,7 +9,6 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 90px; /* Offset para sa matangkad na navbar */
 }
 
 body {
@@ -21,30 +20,28 @@ body {
 
 h1, h2, h3 { font-family: 'Playfair Display', serif; }
 
-/* 2. NAVBAR (Fixed & Always on Top) */
+/* 2. NAVBAR - FIXED & PROFESSIONAL */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 0 5%;
-    height: 90px;
+    height: 80px;
     background-color: #2c5e1a;
-    position: fixed; /* Laging nakadikit sa taas */
+    position: fixed;
     width: 100%;
     top: 0;
     left: 0;
-    z-index: 9999; /* Pinakamataas para hindi matabunan */
-    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 .logo {
     color: white;
-    font-size: 28px;
+    font-size: 24px;
     font-weight: 700;
     text-decoration: none;
 }
-
-.logo i { color: #d4af37; margin-right: 10px; }
 
 .nav-links {
     list-style: none;
@@ -52,57 +49,58 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     align-items: center;
 }
 
-.nav-links li { margin-left: 15px; }
+.nav-links li { margin-left: 20px; }
 
 .nav-links a {
     text-decoration: none;
     color: #fff;
+    font-size: 14px;
     font-weight: 500;
-    font-size: 15px;
-    padding: 10px 20px;
-    border-radius: 30px;
     transition: 0.3s;
 }
 
-.nav-links a:hover { background-color: rgba(255,255,255,0.2); }
+.nav-links a:hover { color: #d4af37; }
 
-.admin-btn {
-    background-color: #d4af37 !important;
-    color: #2c5e1a !important;
-    font-weight: 600;
-}
-
-/* 3. THE "BOOK NOW" SCALE (Full Screen Sections) */
+/* 3. SECTION DISKARTE - FULL SCREEN BUT BALANCED */
 section {
-    min-height: 100vh; /* Isang buong screen bawat section */
+    min-height: 100vh; /* Sakto sa isang screen height */
     width: 100%;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Vertical center */
-    align-items: center; /* Horizontal center */
-    padding: 120px 0;
-    position: relative;
+    align-items: center; /* Vertical Center */
+    justify-content: center; /* Horizontal Center */
+    padding: 100px 0;
 }
 
-/* WIDE CONTAINER FOR BIG COLUMNS */
 .container {
-    max-width: 1400px;
+    max-width: 1200px; /* Standard Pro Width */
     width: 90%;
     margin: 0 auto;
 }
 
 .section-title {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 60px;
 }
 
 .section-title h2 {
-    font-size: 56px; /* Higanteng Title */
+    font-size: 42px;
     color: #2c5e1a;
-    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 15px;
 }
 
-/* 4. HOME SECTION */
+.section-title h2::after {
+    content: '';
+    width: 60px;
+    height: 3px;
+    background: #d4af37;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* 4. HERO (HOME) */
 #home {
     background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
                 url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80');
@@ -113,113 +111,110 @@ section {
     text-align: center;
 }
 
-.hero-content h1 {
-    font-size: clamp(40px, 8vw, 85px);
-    margin-bottom: 25px;
-}
+.hero-content h1 { font-size: 64px; margin-bottom: 20px; }
 
-.hero-content p {
-    font-size: 22px;
-    margin-bottom: 40px;
-    max-width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* 5. ABOUT SECTION (Wide Layout) */
+/* 5. ABOUT - TWO COLUMN BALANCE */
 .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 80px;
+    gap: 60px;
     align-items: center;
 }
 
-.about-text h3 { font-size: 42px; color: #2c5e1a; margin-bottom: 25px; }
-.about-text p { font-size: 19px; line-height: 1.9; margin-bottom: 20px; }
-
+.about-text h3 { font-size: 32px; color: #2c5e1a; margin-bottom: 20px; }
 .about-image img {
     width: 100%;
-    height: 550px;
+    height: 450px;
     object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 25px 25px 0px #2c5e1a;
+    border-radius: 15px;
+    box-shadow: 15px 15px 0px #2c5e1a;
 }
 
-/* 6. GALLERY (Big Grid) */
+/* 6. GALLERY - PRO GRID */
 .gallery-section { background-color: #2c5e1a; }
 .gallery-grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-}
-.gallery-item img {
-    width: 100%;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 15px;
+    gap: 15px;
 }
 
-/* 7. SERVICES & RATES (Giant Columns/Cards) */
-.services-section { background-color: #f0f7ef; }
+.gallery-item img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* 7. SERVICES & RATES - CONSISTENT CARDS */
 .services-grid, .rates-container {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    width: 100%;
+    gap: 30px;
 }
 
 .service-card, .rate-card {
     background: white;
-    padding: 70px 45px; /* Super luwang na padding */
-    border-radius: 25px;
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    padding: 50px 35px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     height: 100%;
-    display: flex;
-    flex-direction: column;
 }
 
-.rate-card { border-top: 10px solid #d4af37; }
-
-.rate-card h3 { font-size: 32px; margin-bottom: 30px; }
+.rate-card { 
+    text-align: left; 
+    border-top: 5px solid #d4af37; 
+}
 
 .rate-card li {
-    padding: 18px 0;
-    font-size: 18px;
+    list-style: none;
+    padding: 15px 0;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
+    font-size: 15px;
 }
 
-/* 8. BOOKING SECTION (Standardizing with the rest) */
-.booking-section { background-color: #f4f7f4; }
+/* 8. BOOKING - THE CENTERPIECE */
+.booking-section { background-color: #f9f9f9; }
 .booking-card-compact {
-    max-width: 1100px;
+    max-width: 900px;
     width: 100%;
-    padding: 80px;
     background: #fff;
-    border-radius: 30px;
-    box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+    padding: 60px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+}
+
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
 }
 
 /* 9. BUTTONS */
 .btn {
     display: inline-block;
-    padding: 18px 45px;
-    border-radius: 50px;
+    padding: 15px 35px;
+    border-radius: 30px;
     text-decoration: none;
     font-weight: 600;
     text-transform: uppercase;
+    font-size: 13px;
+    letter-spacing: 1px;
     transition: 0.3s;
-    cursor: pointer;
     border: none;
+    cursor: pointer;
 }
 
-.btn-primary { background: #d4af37; color: white; }
-.btn-primary:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(212,175,55,0.4); }
+.btn-primary { background-color: #d4af37; color: white; }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(212,175,55,0.3); }
 
-/* RESPONSIVE */
-@media (max-width: 1100px) {
-    .about-grid, .services-grid, .rates-container { grid-template-columns: 1fr; }
+/* MOBILE RESPONSIVE */
+@media (max-width: 992px) {
+    .about-grid, .services-grid, .rates-container, .booking-form-grid {
+        grid-template-columns: 1fr;
+    }
     .gallery-grid { grid-template-columns: repeat(2, 1fr); }
-    .navbar { height: 70px; }
+    section { height: auto; padding: 80px 0; }
 }
