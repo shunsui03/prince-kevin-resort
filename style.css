@@ -34,6 +34,7 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     width: 100%;
     top: 0;
     z-index: 1000;
+    left: 0; /* SIGURADUHIN NA NASA LEFT 0 */
 }
 
 .logo {
@@ -45,17 +46,24 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
     gap: 10px;
 }
 
-.nav-links { list-style: none; display: flex; }
-.nav-links li { margin-left: 5px; }
+.nav-links { 
+    list-style: none; 
+    display: flex; 
+    align-items: center; /* Para pantay-pantay silang lahat sa gitna vertical */
+}
+.nav-links li { 
+    margin-left: 2px; /* Binawasan ko mula 5px para mas dikit nang konti */
+}
 .nav-links a {
     text-decoration: none;
     color: #fff;
     font-weight: 500;
-    font-size: 15px;
-    padding: 8px 20px;
+    font-size: 14px; /* Binabaan ko ng 1px (dating 15px) para mas safe */
+    padding: 8px 12px; /* ETO ANG IMPORTANTE: Ginawang 12px (dating 20px) */
     border-radius: 30px;
     border: 2px solid transparent;
     transition: all 0.3s ease;
+    white-space: nowrap; /* Pinipigilan nito na mag-break into 2 lines yung text */
 }
 .nav-links a:hover {
     background-color: #d4af37;
@@ -63,9 +71,10 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
 }
 
 .admin-btn {
-    background-color: #d4af37 !important; 
+    background-color: #d4af37 !important;
     color: white !important;
-    font-weight: 600; 
+    font-weight: 600;
+    margin-left: 15px; /* Dagdag na space para hindi dikit sa 'Location' */
 }
 .admin-btn:hover { background-color: #c9a227 !important; }
 
@@ -139,27 +148,26 @@ header {
 
 .services-grid {
     display: flex;
-    flex-wrap: wrap;       /* Pinapayagan ang pag-wrap sa next line */
-    justify-content: center; /* Ito ang nagpapagitna sa Row 2 */
-    gap: 30px;             /* Spacing sa pagitan ng mga boxes */
-    max-width: 1100px;
+    flex-wrap: wrap;
+    justify-content: center; /* Ito ang mag-gigitna sa bottom row */
+    gap: 20px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
 .service-card {
     background: white;
-    padding: 40px 20px;
+    padding: 30px 20px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid #eee;
     transition: 0.3s;
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 
-    /* LOGIC: 30% width para laging 3 cards lang ang kasya sa isang row.
-       Ang pang 4 at 5 ay kusa nang bababa at mag-gigitna. */
-    width: 30%; 
-    min-width: 280px;      /* Para hindi masyadong puyat ang cards sa mobile */
-    flex-grow: 0;          /* Pinipigilan ang cards na lumapad nang sobra */
+    /* Eto ang magic: */
+    /* Sa Desktop, kukuha siya ng space para sa 3 columns */
+    flex: 0 1 calc(33.333% - 20px); 
+    min-width: 250px; /* Binabaan ko para hindi agad mag-stack sa tablet */
 }
 
 .service-card i { 
