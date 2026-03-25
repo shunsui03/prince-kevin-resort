@@ -81,90 +81,97 @@
 
         /* 10. BOOKING SECTION (UPDATED) */
        /* 10. BOOKING SECTION (OPTIMIZED FOR VISIBILITY) */
-.booking-section { 
-    padding: 60px 0; /* Binawasan mula 150px para hindi masyadong malayo sa taas */
-    background-color: #f4f7f4; 
-}
+        /* 10. BOOKING SECTION (AYOS NA) */
+        .booking-section { 
+            padding: 80px 0 100px 0; /* Taas at Baba spacing */
+            background-color: #f4f7f4; 
+        }
 
-.booking-section h2::after {
-    display: none !important;
-    content: none !important;
-    margin-bottom: 40px; /* Dagdagan natin para bumaba nang kaunti yung form card */
-    font-family: 'Playfair Display', serif;
-    font-size: 36px;
-    color: #2c5e1a;
-    text-align: center;
-    
-}
+        /* ITO ANG NAGPABABA SA TITLE AT NAGTANGGAL NG LINE */
+        .booking-section .section-title {
+            margin-top: 40px; /* Ibinaba ang title ng 40px */
+            margin-bottom: 40px; /* Espasyo bago ang form */
+        }
 
-.booking-card-compact { 
-    max-width: 800px; 
-    margin: 0 auto; 
-    background: #fff; 
-    padding: 30px 50px; /* Binawasan vertical padding mula 50px to 30px */
-    border-radius: 20px; 
-    box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
-}
+        /* TINANGGAL ANG YELLOW LINE DITO */
+        .booking-section .section-title h2::after {
+            display: none; /* Tatanggalin ang yellow line */
+        }
 
-.booking-form-grid { 
-    display: grid; 
-    grid-template-columns: 1fr 1fr; 
-    gap: 15px; /* Binawasan mula 20px para mas dikit nang konti */
-}
+        .booking-card-compact { 
+            max-width: 800px; 
+            margin: 0 auto; 
+            background: #fff; 
+            padding: 40px 50px; 
+            border-radius: 20px; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+        }
 
-.form-group { 
-    display: flex; 
-    flex-direction: column; 
-    gap: 5px; /* Mas compact na gap sa label at input */
-}
+        .booking-form-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 15px; 
+        }
 
-.form-group label { 
-    font-weight: 600; 
-    color: #2c5e1a; 
-    font-size: 13px; /* Bahagyang mas maliit */
-}
+        .form-group { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 5px; 
+        }
 
-.form-group input, .form-group select { 
-    padding: 10px 14px; /* Binawasan vertical padding mula 14px to 10px */
-    border: 2px solid #eee; 
-    border-radius: 8px; 
-    font-family: 'Poppins', sans-serif; 
-    transition: 0.3s; 
-    font-size: 17px; 
-    background-color: #fcfcfc; 
-}
+        .form-group label { 
+            font-weight: 600; 
+            color: #2c5e1a; 
+            font-size: 13px; 
+        }
 
-/* TOTAL DISPLAY - MAS COMPACT */
-.form-total-display {
-    grid-column: span 2;
-    justify-self: center;
-    background: linear-gradient(135deg, #2c5e1a, #1a3a0f);
-    color: white;
-    padding: 10px 30px; /* Mas manipis na padding */
-    border-radius: 8px;
-    text-align: center;
-    margin: 10px 0; /* Binawasan margin */
-    width: fit-content;
-    min-width: 250px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-}
+        .form-group input, .form-group select { 
+            padding: 10px 14px; 
+            border: 2px solid #eee; 
+            border-radius: 8px; 
+            font-family: 'Poppins', sans-serif; 
+            transition: 0.3s; 
+            font-size: 17px; 
+            background-color: #fcfcfc; 
+        }
 
-.form-total-display h3 {
-    margin: 0;
-    font-size: 18px; /* Slightly smaller font */
-    font-family: 'Playfair Display', serif;
-}
+        .form-group input:focus, .form-group select:focus { 
+            border-color: #2c5e1a; 
+            background-color: #fff; 
+            box-shadow: 0 0 0 4px rgba(44, 94, 26, 0.1); 
+        }
 
-/* BUTTON - OPTIMIZED SIZE */
-.btn-block {
-    grid-column: span 2;
-    justify-self: center;
-    width: auto;
-    min-width: 200px; 
-    padding: 12px 40px; /* Mas fit sa mata */
-    margin-top: 0; /* Tinanggal ang extra margin */
-    font-size: 15px;
-}
+        /* TOTAL DISPLAY - COMPACT */
+        .form-total-display {
+            grid-column: span 2;
+            justify-self: center;
+            background: linear-gradient(135deg, #2c5e1a, #1a3a0f);
+            color: white;
+            padding: 12px 30px; 
+            border-radius: 8px;
+            text-align: center;
+            margin: 10px 0; 
+            width: fit-content;
+            min-width: 250px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        .form-total-display h3 {
+            margin: 0;
+            font-size: 18px; 
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* BUTTON - CENTERED */
+        .btn-block {
+            grid-column: span 2;
+            justify-self: center;
+            width: auto;
+            min-width: 200px; 
+            padding: 12px 40px; 
+            margin-top: 0; 
+            font-size: 15px;
+        }
 
         /* 11. FOOTER */
         footer { background-color: #111; color: white; text-align: center; padding: 60px 20px; }
