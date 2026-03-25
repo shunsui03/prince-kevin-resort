@@ -27,13 +27,12 @@
     .hero-content h1 { font-size: 70px; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); line-height: 1.1; }
     .hero-content p { font-size: 20px; margin-bottom: 40px; font-weight: 300; opacity: 0.9; line-height: 1.8; }
 
-    /* 5. SECTION TITLES */
+    /* 5. SECTION TITLES - NO UNDERLINES */
     .section-title { text-align: center; margin-bottom: 60px; width: 100%; }
     .section-title h2 { font-size: 40px; color: #2c5e1a; margin-bottom: 15px; position: relative; display: inline-block; }
-    .section-title h2::after { content: ''; position: absolute; width: 60px; height: 3px; background-color: #d4af37; bottom: -10px; left: 50%; transform: translateX(-50%); }
+    .section-title h2::after { display: none; }
     .section-title p { color: #666; font-size: 16px; margin-top: 15px; }
     .section-title.light h2, .section-title.light p { color: white; }
-    .section-title.light h2::after { background-color: #fff; }
 
     /* 6. ABOUT SECTION - FIXED NAVBAR COLLISION */
     #about { padding: 120px 0 100px 0; }
@@ -77,7 +76,6 @@
     /* 10. BOOKING SECTION - FIXED (No underline, compact, visible) */
     .booking-section { padding: 60px 0 80px 0; background-color: #f4f7f4; }
     .booking-section .section-title { margin-bottom: 30px; }
-    .booking-section .section-title h2::after { display: none; }
     .booking-card-compact { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
     .booking-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
     .form-group { display: flex; flex-direction: column; gap: 8px; }
