@@ -1,18 +1,13 @@
 /* ========================================= */
-/* RATES SECTION - TALL & CENTERED           */
+/* RATES SECTION - IDEAL HEIGHT (AYOS NA)    */
 /* ========================================= */
 .rates-section {
     background: linear-gradient(135deg, #1a3a0f, #2c5e1a);
-    padding: 120px 0;
-
-    /* ITO ANG I-DAGDAG: Sasaklaw nito ang buong screen height 
-       kaya lalaki ang green background */
-    min-height: 100vh; 
-    
-    /* I-CENTER NATIN ANG CONTENT SA GITNA NG GREEN BACKGROUND */
+    padding: 100px 0; /* Standard padding taas-baba */
+    min-height: 650px; /* ITO ANG SAKTO: Medyo matayog pero di buong screen */
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Vertically center */
+    justify-content: center; /* I-center vertically ang cards */
 }
 
 .rates-container {
@@ -25,57 +20,109 @@
 
 .rate-card {
     background: white;
-    padding: 50px 40px;
+    padding: 40px;
     border-radius: 15px;
     flex: 1 1 300px;
     min-width: 300px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
-    transition: transform 0.3s ease;
-    border-top: 6px solid #d4af37;
+    max-width: 350px;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+    border-top: 5px solid #d4af37;
+    transition: transform 0.3s;
 }
 
 .rate-card:hover {
-    transform: translateY(-10px);
+    transform: translateY(-5px);
 }
 
 .rate-card h3 {
     color: #1a3a0f;
-    font-size: 26px;
-    margin-bottom: 30px;
+    font-size: 24px;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
 }
 
-.rate-card h3 i {
-    color: #d4af37;
-    font-size: 28px;
-}
+.rate-card h3 i { color: #d4af37; font-size: 24px; }
 
-.rate-card ul {
-    list-style: none;
-}
+.rate-card ul { list-style: none; }
 
 .rate-card li {
-    padding: 15px 0;
+    padding: 12px 0;
     border-bottom: 1px solid #eee;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    color: #444;
-    font-size: 16px;
+    font-size: 15px;
 }
 
-.rate-card li:last-child {
-    border-bottom: none;
+.rate-card li:last-child { border-bottom: none; }
+
+.rate-card strong { color: #2c5e1a; font-size: 16px; }
+
+/* ========================================= */
+/* BOOKING SECTION - AYOS NA RIN             */
+/* ========================================= */
+.booking-section {
+    padding: 100px 0;
+    background-color: #f4f7f4;
+    position: relative;
 }
 
-.rate-card strong {
+.booking-card-compact {
+    max-width: 800px;
+    margin: 0 auto;
+    background: #fff;
+    padding: 50px;
+    border-radius: 20px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+}
+
+.booking-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+
+.form-group label {
+    font-weight: 600;
     color: #2c5e1a;
-    font-size: 18px;
+    font-size: 14px;
+}
+
+.form-group input, .form-group select {
+    padding: 14px;
+    border: 2px solid #eee;
+    border-radius: 8px;
+    font-family: 'Poppins', sans-serif;
+    transition: 0.3s;
+}
+
+.form-group input:focus, .form-group select:focus {
+    border-color: #2c5e1a;
+}
+
+.form-total-display {
+    grid-column: span 2;
+    background: #2c5e1a;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.btn-block {
+    grid-column: span 2;
+    width: 100%;
+    padding: 15px;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+/* Mobile Responsive for Booking */
+@media (max-width: 768px) {
+    .booking-form-grid { grid-template-columns: 1fr; }
+    .form-total-display, .btn-block { grid-column: span 1; }
 }
