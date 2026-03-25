@@ -1,8 +1,3 @@
-Siguraduhin mong nakalagay sa `style.css` file ito at na-commit sa GitHub. Minarapat ko nang i-check ulit ang bawat `bracket` at `semicolon` para sure na walang error.
-
-Ito na ang **FINAL** at **WORKING** code.
-
-```css
 /* General Reset & Font Import */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;500;600&display=swap');
 
@@ -127,7 +122,7 @@ header {
 .about-text h3 { margin-bottom: 15px; color: #2c5e1a; }
 .about-image img { width: 100%; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
 
-/* GALLERY SECTION (Dark Green) */
+/* GALLERY SECTION */
 .gallery-section { 
     background-color: #2c5e1a; 
     padding: 80px 5%;
@@ -136,20 +131,19 @@ header {
 .gallery-item img { width: 100%; height: 250px; object-fit: cover; border-radius: 8px; transition: transform 0.3s; cursor: pointer; }
 .gallery-item img:hover { transform: scale(1.05); }
 
-/* SERVICES SECTION (PYRAMID LAYOUT) */
+/* SERVICES SECTION - PYRAMID LAYOUT (FIXED) */
 .services-section {
     background-color: #e8f5e9;
-    padding: 0;
+    padding: 80px 5%; /* Added padding here directly */
 }
 
 .services-grid {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center; 
+    justify-content: center; /* Centers the 2 bottom items */
     gap: 30px;
-    max-width: 1200px;
+    max-width: 1100px;
     margin: 0 auto;
-    padding: 0 20px;
 }
 
 .service-card {
@@ -159,7 +153,11 @@ header {
     border-radius: 10px;
     border: 1px solid #eee;
     transition: 0.3s;
-    width: 340px; 
+    
+    /* ETO ANG AYOS: 32% width para kasya 3 sa taas */
+    width: 32%; 
+    min-width: 300px; /* Min width para di sobrang liit */
+    
     box-shadow: 0 5px 15px rgba(0,0,0,0.05);
 }
 
@@ -176,15 +174,16 @@ header {
     border-color: #2c5e1a;
 }
 
-/* RATES SECTION (3 COLUMN GRID) */
+/* RATES SECTION - 3 COLUMN GRID */
 .rates-section { 
     background-color: #2c5e1a; 
     padding: 80px 5%;
 }
 
 .rates-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 30px;
     max-width: 1100px;
     margin: 0 auto;
@@ -194,21 +193,23 @@ header {
     background: white;
     padding: 30px;
     border-radius: 10px;
-    width: 100%; 
+    
+    /* ETO ANG AYOS: 32% width para 3 columns */
+    width: 32%;
+    min-width: 300px;
+
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     border-top: 5px solid #d4af37;
-    display: flex;
-    flex-direction: column;
 }
 
 .rate-card h3 { margin-bottom: 20px; color: #333; display: flex; align-items: center; gap: 10px; }
-.rate-card ul { list-style: none; flex-grow: 1; }
+.rate-card ul { list-style: none; }
 .rate-card li { margin-bottom: 10px; border-bottom: 1px dashed #eee; padding-bottom: 5px; font-size: 15px; }
 
-/* BOOKING SECTION (COMPACT FORM) */
+/* BOOKING SECTION */
 .booking-section {
     background-color: #e8f5e9;
-    padding: 0;
+    padding: 80px 5%;
 }
 
 .booking-card-compact {
@@ -269,10 +270,12 @@ header {
 footer { background-color: #222; color: white; text-align: center; padding: 40px; }
 .social-icons a { color: #d4af37; font-size: 20px; margin: 0 10px; }
 
-/* RESPONSIVE DESIGN (Mobile) */
-@media (max-width: 1000px) {
-    .services-grid { justify-content: center; }
-    .service-card { width: 45%; }
+/* RESPONSIVE DESIGN */
+@media (max-width: 900px) {
+    /* Mag-ssingle column sa tablet/mobile */
+    .service-card, .rate-card {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {
@@ -281,14 +284,9 @@ footer { background-color: #222; color: white; text-align: center; padding: 40px
     
     .about-grid { grid-template-columns: 1fr; }
     
-    .service-card { width: 100%; max-width: 400px; }
-    
-    .rates-container { grid-template-columns: 1fr; }
-    
     .gallery-grid { grid-template-columns: 1fr 1fr; }
     
     .hero-content h1 { font-size: 36px; }
     
     .booking-form-grid { grid-template-columns: 1fr; }
 }
-```
