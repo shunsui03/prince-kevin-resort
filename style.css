@@ -270,3 +270,14 @@ h1, h2, h3 { font-family: 'Playfair Display', serif; }
         grid-column: span 1;
     }
 }
+.services-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center; /* Gitna ang mga boxes */
+    gap: 20px;
+}
+
+.service-card {
+    flex: 1 1 300px; /* Standard size */
+    max-width: 350px;
+}
