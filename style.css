@@ -80,45 +80,80 @@
         .rate-card strong { color: #2c5e1a; font-size: 16px; }
 
         /* 10. BOOKING SECTION (UPDATED) */
-        .booking-section { padding: 150px 0; background-color: #f4f7f4; }
-        .booking-card-compact { max-width: 800px; margin: 0 auto; background: #fff; padding: 50px; border-radius: 20px; box-shadow: 0 20px 50px rgba(0,0,0,0.1); }
-        .booking-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-group label { font-weight: 600; color: #2c5e1a; font-size: 14px; }
-        .form-group input, .form-group select { padding: 14px; border: 2px solid #eee; border-radius: 8px; font-family: 'Poppins', sans-serif; transition: 0.3s; font-size: 14px; background-color: #fcfcfc; }
-        .form-group input:focus, .form-group select:focus { border-color: #2c5e1a; background-color: #fff; box-shadow: 0 0 0 4px rgba(44, 94, 26, 0.1); }
+       /* 10. BOOKING SECTION (OPTIMIZED FOR VISIBILITY) */
+.booking-section { 
+    padding: 60px 0; /* Binawasan mula 150px para hindi masyadong malayo sa taas */
+    background-color: #f4f7f4; 
+}
 
-        /* TOTAL DISPLAY - RESIZED & CENTERED */
-               /* TOTAL DISPLAY - RESIZED & CENTERED (IDEAL SIZE) */
-        .form-total-display {
-            grid-column: span 2;
-            justify-self: center; /* I-CENTER SA GITNA */
-            background: linear-gradient(135deg, #2c5e1a, #1a3a0f);
-            color: white;
-            padding: 15px 40px; /* Sakto lang ang kapal */
-            border-radius: 8px;
-            text-align: center;
-            margin: 15px 0;
-            width: fit-content; /* AYAOS AUTOMATIC SA LAMAN */
-            min-width: 300px; /* Minimum na lapad para mukhang square */
-            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
-        }
+.booking-card-compact { 
+    max-width: 800px; 
+    margin: 0 auto; 
+    background: #fff; 
+    padding: 30px 50px; /* Binawasan vertical padding mula 50px to 30px */
+    border-radius: 20px; 
+    box-shadow: 0 15px 40px rgba(0,0,0,0.1); 
+}
 
-        .form-total-display h3 {
-            margin: 0;
-            font-size: 20px; /* Sakto lang ang font */
-            font-family: 'Playfair Display', serif;
-        }
+.booking-form-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 15px; /* Binawasan mula 20px para mas dikit nang konti */
+}
 
-        /* BUTTON - CENTERED & IDEAL SIZE */
-        .btn-block {
-            grid-column: span 2;
-            justify-self: center; /* I-CENTER SA GITNA */
-            width: auto; /* HINDI FULL WIDTH */
-            min-width: 250px; /* Sakto lang na lapad para clickable */
-            padding: 14px 50px; /* Malapad sa left/right para mukhang button */
-            margin-top: 5px;
-        }
+.form-group { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 5px; /* Mas compact na gap sa label at input */
+}
+
+.form-group label { 
+    font-weight: 600; 
+    color: #2c5e1a; 
+    font-size: 13px; /* Bahagyang mas maliit */
+}
+
+.form-group input, .form-group select { 
+    padding: 10px 14px; /* Binawasan vertical padding mula 14px to 10px */
+    border: 2px solid #eee; 
+    border-radius: 8px; 
+    font-family: 'Poppins', sans-serif; 
+    transition: 0.3s; 
+    font-size: 14px; 
+    background-color: #fcfcfc; 
+}
+
+/* TOTAL DISPLAY - MAS COMPACT */
+.form-total-display {
+    grid-column: span 2;
+    justify-self: center;
+    background: linear-gradient(135deg, #2c5e1a, #1a3a0f);
+    color: white;
+    padding: 10px 30px; /* Mas manipis na padding */
+    border-radius: 8px;
+    text-align: center;
+    margin: 10px 0; /* Binawasan margin */
+    width: fit-content;
+    min-width: 250px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+}
+
+.form-total-display h3 {
+    margin: 0;
+    font-size: 18px; /* Slightly smaller font */
+    font-family: 'Playfair Display', serif;
+}
+
+/* BUTTON - OPTIMIZED SIZE */
+.btn-block {
+    grid-column: span 2;
+    justify-self: center;
+    width: auto;
+    min-width: 200px; 
+    padding: 12px 40px; /* Mas fit sa mata */
+    margin-top: 0; /* Tinanggal ang extra margin */
+    font-size: 15px;
+}
 
         /* 11. FOOTER */
         footer { background-color: #111; color: white; text-align: center; padding: 60px 20px; }
