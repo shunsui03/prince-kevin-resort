@@ -12,6 +12,7 @@
     .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); }
 
     /* 3. NAVIGATION BAR - FIXED OVERFLOW */
+    /* FIX: Added max-width and flexible layout to prevent overflow */
     .navbar { 
         display: flex; 
         justify-content: space-between; 
@@ -35,6 +36,7 @@
         display: flex; 
         align-items: center; 
         gap: 10px; 
+        flex-shrink: 0; /* Prevents logo from shrinking */
     }
     .logo i { 
         color: #d4af37; 
@@ -45,10 +47,11 @@
         display: flex; 
         align-items: center; 
         flex-wrap: wrap; 
-        justify-content: center;
+        justify-content: flex-end; /* Aligns items to the right */
         gap: 8px; 
         margin: 0;
         padding: 0;
+        max-width: 100%; /* Ensures it doesn't exceed screen width */
     }
     .nav-links li { 
         margin-left: 0; 
@@ -61,17 +64,21 @@
         padding: 8px 16px; 
         border-radius: 30px; 
         transition: 0.3s; 
+        display: inline-block; /* Ensures padding is respected */
+        white-space: nowrap; /* Prevents text wrapping inside buttons */
     }
     .nav-links a:hover { 
         background-color: rgba(255,255,255,0.15); 
         color: #d4af37; 
     }
+    /* FIX: Ensures admin button stays accessible and wraps correctly */
     .admin-btn { 
         background-color: #d4af37 !important; 
         color: #1a3a0f !important; 
         font-weight: 700; 
         white-space: nowrap;
         margin-left: 0 !important;
+        flex-shrink: 0; /* Prevents the button from being squeezed */
     }
 
     /* 4. HERO SECTION */
