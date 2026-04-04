@@ -117,12 +117,21 @@
         }
         .table-header h3 { margin: 0; color: #2c5e1a; }
 
-        table { width: 100%; border-collapse: collapse; min-width: 900px; }
+        table { width: 100%; border-collapse: collapse; min-width: 950px; }
         thead { background-color: #2c5e1a; color: white; }
         th { padding: 15px; text-align: left; font-weight: 500; font-size: 13px; }
         td { padding: 15px; border-bottom: 1px solid #eee; color: #444; vertical-align: top; font-size: 14px; }
         
         tbody tr:hover { background-color: #f9fcf7; }
+
+        /* Row fade-out animation when deleting */
+        tbody tr.row-deleting {
+            animation: rowFadeOut 0.4s ease forwards;
+        }
+        @keyframes rowFadeOut {
+            0% { opacity: 1; transform: translateX(0); }
+            100% { opacity: 0; transform: translateX(40px); max-height: 0; padding: 0; }
+        }
 
         .status-badge {
             padding: 5px 12px;
@@ -137,7 +146,6 @@
         .status-accepted { background-color: #d4edda; color: #155724; }
         .status-declined { background-color: #f8d7da; color: #721c24; }
 
-        /* Payment Status Badges */
         .payment-badge {
             padding: 5px 12px;
             border-radius: 20px;
@@ -170,23 +178,140 @@
             border-radius: 5px;
             cursor: pointer;
             font-size: 12px;
-            margin-right: 5px;
+            margin-right: 4px;
             transition: 0.2s;
         }
         .btn-accept { background-color: #28a745; color: white; }
         .btn-accept:hover { background-color: #218838; }
         .btn-decline { background-color: #dc3545; color: white; }
         .btn-decline:hover { background-color: #c82333; }
+        .btn-delete { 
+            background-color: #6c757d; 
+            color: white; 
+            border: 1px solid #555;
+        }
+        .btn-delete:hover { 
+            background-color: #343a40; 
+            border-color: #343a40;
+        }
 
         .table-responsive { overflow-x: auto; }
 
-        /* No data message */
         .no-data {
             text-align: center;
             padding: 50px 20px;
             color: #aaa;
         }
         .no-data i { font-size: 40px; margin-bottom: 10px; display: block; }
+
+        /* --- DELETE CONFIRMATION MODAL --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.55);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            animation: modalFadeIn 0.2s ease;
+        }
+        .modal-overlay.active {
+            display: flex;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        .modal-box {
+            background: white;
+            border-radius: 18px;
+            padding: 35px 40px;
+            max-width: 420px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+            animation: modalSlideIn 0.25s ease;
+            position: relative;
+        }
+        @keyframes modalSlideIn {
+            from { transform: scale(0.9) translateY(20px); opacity: 0; }
+            to { transform: scale(1) translateY(0); opacity: 1; }
+        }
+        .modal-icon {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            background: #fff0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+        }
+        .modal-icon i {
+            font-size: 28px;
+            color: #dc3545;
+        }
+        .modal-box h3 {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif;
+        }
+        .modal-box p {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .modal-box p strong {
+            color: #333;
+        }
+        .modal-buttons {
+            display: flex;
+            gap: 12px;
+            justify-content: center;
+        }
+        .modal-btn {
+            padding: 12px 28px;
+            border-radius: 10px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s ease;
+        }
+        .modal-btn-cancel {
+            background: #f0f0f0;
+            color: #555;
+        }
+        .modal-btn-cancel:hover {
+            background: #e0e0e0;
+        }
+        .modal-btn-delete {
+            background: #dc3545;
+            color: white;
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
+        }
+        .modal-btn-delete:hover {
+            background: #c82333;
+            box-shadow: 0 6px 18px rgba(220, 53, 69, 0.4);
+            transform: translateY(-1px);
+        }
+        .modal-btn-delete:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        @media (max-width: 480px) {
+            .modal-box { padding: 25px 20px; }
+            .modal-buttons { flex-direction: column; }
+            .modal-btn { width: 100%; }
+        }
     </style>
 </head>
 <body>
@@ -276,6 +401,23 @@
         </div>
     </div>
 
+    <!-- DELETE CONFIRMATION MODAL -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal-box">
+            <div class="modal-icon">
+                <i class="fas fa-trash-alt"></i>
+            </div>
+            <h3>Delete Reservation?</h3>
+            <p>This will permanently remove <strong id="deleteCustomerName"></strong>'s booking from the list. This action cannot be undone.</p>
+            <div class="modal-buttons">
+                <button class="modal-btn modal-btn-cancel" onclick="closeDeleteModal()">Cancel</button>
+                <button class="modal-btn modal-btn-delete" id="confirmDeleteBtn" onclick="confirmDelete()">
+                    <i class="fas fa-trash-alt"></i> Yes, Delete
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
         const firebaseConfig = {
             apiKey: "AIzaSyB97AOyincD1oiPtolcP0uQizyA9OoQYE8",
@@ -290,6 +432,9 @@
         firebase.initializeApp(firebaseConfig);
         const auth = firebase.auth();
         const db = firebase.firestore();
+
+        // Variable to store the ID of the booking being deleted
+        let deleteTargetId = null;
 
         auth.onAuthStateChanged((user) => {
             if (user) {
@@ -346,7 +491,6 @@
 
                     const date = data.timestamp ? new Date(data.timestamp.seconds * 1000).toLocaleString() : 'N/A';
                     
-                    // Build details — NO more ATV field
                     let details = '';
                     if(data.type === 'Resort') {
                         details = `<strong>Heads:</strong> ${data.heads}<br><strong>Sched:</strong> ${data.schedule}`;
@@ -354,12 +498,10 @@
                         details = `<strong>Heads:</strong> ${data.heads}<br><strong>Tent:</strong> ${data.tent}`;
                     }
 
-                    // Status badge
                     let statusClass = 'status-pending';
                     if(data.status === 'Accepted') statusClass = 'status-accepted';
                     if(data.status === 'Declined') statusClass = 'status-declined';
 
-                    // Payment badge
                     let paymentBadge = '';
                     if(data.payment === 'With Downpayment') {
                         paymentBadge = `<span class="payment-badge payment-with"><i class="fas fa-qrcode"></i> With Downpayment</span>`;
@@ -368,7 +510,7 @@
                     }
 
                     const row = `
-                        <tr>
+                        <tr id="row-${doc.id}">
                             <td>${date}</td>
                             <td><strong>${data.name}</strong><br><small>${data.contact}</small></td>
                             <td>${data.type}</td>
@@ -379,13 +521,13 @@
                             <td>
                                 <button class="action-btn btn-accept" onclick="updateStatus('${doc.id}', 'Accepted')"><i class="fas fa-check"></i></button>
                                 <button class="action-btn btn-decline" onclick="updateStatus('${doc.id}', 'Declined')"><i class="fas fa-times"></i></button>
+                                <button class="action-btn btn-delete" onclick="openDeleteModal('${doc.id}', '${data.name.replace(/'/g, "\\'")}')"><i class="fas fa-trash-alt"></i></button>
                             </td>
                         </tr>
                     `;
                     tbody.innerHTML += row;
                 });
 
-                // Update stats
                 document.getElementById('totalBookings').innerText = total;
                 document.getElementById('pendingCount').innerText = pending;
                 document.getElementById('acceptedCount').innerText = accepted;
@@ -396,6 +538,63 @@
         async function updateStatus(id, status) {
             await db.collection('bookings').doc(id).update({ status: status });
         }
+
+        // --- DELETE FUNCTIONS ---
+
+        function openDeleteModal(docId, customerName) {
+            deleteTargetId = docId;
+            document.getElementById('deleteCustomerName').innerText = customerName;
+            document.getElementById('deleteModal').classList.add('active');
+            document.getElementById('confirmDeleteBtn').disabled = false;
+            document.getElementById('confirmDeleteBtn').innerHTML = '<i class="fas fa-trash-alt"></i> Yes, Delete';
+        }
+
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.remove('active');
+            deleteTargetId = null;
+        }
+
+        async function confirmDelete() {
+            if (!deleteTargetId) return;
+
+            const btn = document.getElementById('confirmDeleteBtn');
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Deleting...';
+
+            // Animate the row out
+            const row = document.getElementById('row-' + deleteTargetId);
+            if (row) {
+                row.classList.add('row-deleting');
+            }
+
+            try {
+                // Wait for animation to finish before removing from Firestore
+                setTimeout(async () => {
+                    await db.collection('bookings').doc(deleteTargetId).delete();
+                    closeDeleteModal();
+                }, 400);
+            } catch (error) {
+                console.error("Error deleting: ", error);
+                alert('Failed to delete booking. Please try again.');
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-trash-alt"></i> Yes, Delete';
+                if (row) row.classList.remove('row-deleting');
+            }
+        }
+
+        // Close modal when clicking the overlay background
+        document.getElementById('deleteModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeDeleteModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeDeleteModal();
+            }
+        });
     </script>
 </body>
 </html>
