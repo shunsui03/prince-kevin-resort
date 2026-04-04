@@ -38,7 +38,7 @@
         </div>
     </header>
 
-    <!-- About Section - FIXED: Now uses inner container for consistency -->
+    <!-- About Section -->
     <section id="about">
         <div class="container">
             <div class="section-title">
@@ -208,11 +208,37 @@
                         </select>
                     </div>
 
-                    <div class="form-total-display">
-                        <h3>Total: ₱ <span id="totalPrice">0.00</span></h3>
+                    <!-- PAYMENT OPTIONS (replaces old total display & single submit) -->
+                    <div class="payment-options">
+                        <p class="payment-label">Choose Payment Method</p>
+                        <div class="payment-buttons">
+                            <button type="button" class="btn-payment downpayment-btn" onclick="showDownpayment()">
+                                <i class="fas fa-qrcode"></i> Downpayment (GCash)
+                            </button>
+                            <button type="button" class="btn-payment payperson-btn" onclick="submitPayInPerson(event)">
+                                <i class="fas fa-money-bill-wave"></i> Submit Booking (Pay in Person)
+                            </button>
+                        </div>
                     </div>
-                    
-                    <button type="submit" class="btn btn-primary btn-block">Submit Booking</button>
+
+                    <!-- GCASH QR SECTION (hidden by default) -->
+                    <div class="gcash-section" id="gcashSection" style="display: none;">
+                        <div class="gcash-content">
+                            <p><strong>Scan the GCash QR Code below</strong> to send your downpayment.</p>
+                            <!-- REPLACE THE SRC BELOW WITH YOUR ACTUAL GCASH QR CODE IMAGE -->
+                            <img src="gcash-qr.png" alt="GCash QR Code" class="gcash-qr"
+                                 onerror="this.src='https://upload.wikimedia.org/wikipedia/commons/thumb/4/4e/GCash_logo.svg/512px-GCash_logo.svg.png'; this.style.border='none'; this.style.boxShadow='none'; this.style.padding='20px'; this.style.background='#f0faff';">
+                            <p class="gcash-note">After completing your GCash payment, click the button below to confirm your booking.</p>
+                            <div class="gcash-actions">
+                                <button type="button" id="gcashConfirmBtn" class="btn-gcash-confirm" onclick="submitWithDownpayment(event)">
+                                    <i class="fas fa-check-circle"></i> Pay with GCash and Submit Booking
+                                </button>
+                                <button type="button" class="btn-cancel" onclick="hideDownpayment()">
+                                    Cancel
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                 </form>
             </div>
         </div>
@@ -244,23 +270,8 @@
         document.getElementById('visitDate').valueAsDate = new Date();
 
         function updatePrice() {
-            let total = 0;
-            const type = document.getElementById('bookingType').value;
-
-            if (type === 'resort') {
-                const heads = parseInt(document.getElementById('resortHeads').value) || 0;
-                const schedule = document.getElementById('resortSchedule').value;
-                const entrance = heads * 250;
-                const baseRate = schedule === 'day' ? 10000 : 8000;
-                total = entrance + baseRate;
-            } else {
-                const heads = parseInt(document.getElementById('campHeads').value) || 0;
-                const tent = parseInt(document.getElementById('tentType').value);
-                const entrance = heads * 350;
-                total = entrance + tent;
-            }
-
-            document.getElementById('totalPrice').innerText = total.toLocaleString('en-US');
+            // Price calculation still runs internally for the Firestore record
+            // but is no longer displayed on screen
         }
 
         document.getElementById('bookingType').addEventListener('change', function() {
@@ -280,16 +291,75 @@
 
         updatePrice();
 
-        document.getElementById('reservationForm').addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const submitBtn = document.querySelector('button[type="submit"]');
-            submitBtn.innerText = "Processing...";
-            submitBtn.disabled = true;
+        // --- PAYMENT FLOW FUNCTIONS ---
+
+        function calculateTotal() {
+            let total = 0;
+            const type = document.getElementById('bookingType').value;
+
+            if (type === 'resort') {
+                const heads = parseInt(document.getElementById('resortHeads').value) || 0;
+                const schedule = document.getElementById('resortSchedule').value;
+                const entrance = heads * 250;
+                const baseRate = schedule === 'day' ? 10000 : 8000;
+                total = entrance + baseRate;
+            } else {
+                const heads = parseInt(document.getElementById('campHeads').value) || 0;
+                const tent = parseInt(document.getElementById('tentType').value);
+                const entrance = heads * 350;
+                total = entrance + tent;
+            }
+            return total;
+        }
+
+        function showDownpayment() {
+            // Validate form fields first
+            if (!validateForm()) return;
+            document.getElementById('gcashSection').style.display = 'block';
+            // Scroll to the GCash section smoothly
+            setTimeout(() => {
+                document.getElementById('gcashSection').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
+
+        function hideDownpayment() {
+            document.getElementById('gcashSection').style.display = 'none';
+        }
+
+        function validateForm() {
+            const name = document.getElementById('name').value.trim();
+            const contact = document.getElementById('contact').value.trim();
+            const visitDate = document.getElementById('visitDate').value;
+
+            if (!name) {
+                alert('Please enter your full name.');
+                document.getElementById('name').focus();
+                return false;
+            }
+            if (!contact) {
+                alert('Please enter your contact number.');
+                document.getElementById('contact').focus();
+                return false;
+            }
+            if (!visitDate) {
+                alert('Please select a date of visit.');
+                document.getElementById('visitDate').focus();
+                return false;
+            }
+            return true;
+        }
+
+        async function submitBooking(paymentStatus) {
+            const confirmBtn = document.getElementById('gcashConfirmBtn');
+            if (confirmBtn) {
+                confirmBtn.innerText = "Processing...";
+                confirmBtn.disabled = true;
+            }
 
             const type = document.getElementById('bookingType').value;
             const name = document.getElementById('name').value;
             const contact = document.getElementById('contact').value;
-            const total = document.getElementById('totalPrice').innerText;
+            const total = calculateTotal();
             const visitDate = document.getElementById('visitDate').value;
 
             let bookingDetails = {};
@@ -301,9 +371,10 @@
                     type: 'Resort',
                     heads: document.getElementById('resortHeads').value,
                     schedule: document.getElementById('resortSchedule').options[document.getElementById('resortSchedule').selectedIndex].text,
-                    total: total,
+                    total: '₱' + total.toLocaleString('en-US'),
                     visitDate: visitDate,
                     status: 'Pending',
+                    payment: paymentStatus,
                     timestamp: new Date()
                 };
             } else {
@@ -313,27 +384,49 @@
                     type: 'Campsite',
                     heads: document.getElementById('campHeads').value,
                     tent: document.getElementById('tentType').options[document.getElementById('tentType').selectedIndex].text,
-                    total: total,
+                    total: '₱' + total.toLocaleString('en-US'),
                     visitDate: visitDate,
                     status: 'Pending',
+                    payment: paymentStatus,
                     timestamp: new Date()
                 };
             }
 
             try {
                 await db.collection('bookings').add(bookingDetails);
-                alert('Booking submitted successfully!');
+                alert(paymentStatus === 'With Downpayment' 
+                    ? 'Booking submitted with downpayment! Thank you.' 
+                    : 'Booking submitted successfully! You may pay in person upon arrival.');
                 document.getElementById('reservationForm').reset();
                 document.getElementById('visitDate').valueAsDate = new Date();
+                hideDownpayment();
+                // Reset to resort view
+                document.getElementById('resortHeadsGroup').style.display = 'block';
+                document.getElementById('resortScheduleGroup').style.display = 'block';
+                document.getElementById('campHeadsGroup').style.display = 'none';
+                document.getElementById('tentTypeGroup').style.display = 'none';
                 updatePrice();
             } catch (error) {
                 console.error("Error: ", error);
-                alert('Error saving booking.');
+                alert('Error saving booking. Please try again.');
             }
             
-            submitBtn.innerText = "Submit Booking";
-            submitBtn.disabled = false;
-        });
+            if (confirmBtn) {
+                confirmBtn.innerText = "Pay with GCash and Submit Booking";
+                confirmBtn.disabled = false;
+            }
+        }
+
+        function submitWithDownpayment(e) {
+            if (e) e.preventDefault();
+            submitBooking('With Downpayment');
+        }
+
+        function submitPayInPerson(e) {
+            if (e) e.preventDefault();
+            if (!validateForm()) return;
+            submitBooking('No Downpayment');
+        }
     </script>
 </body>
 </html>
