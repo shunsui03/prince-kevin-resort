@@ -1,866 +1,234 @@
-/* ============================================
-   1. CSS CUSTOM PROPERTIES (THEMING)
-   ============================================ */
-:root {
-    /* Colors */
-    --primary-green: #1a3a0f;
-    --primary-green-light: #2c5e1a;
-    --accent-gold: #d4af37;
-    --accent-gold-light: #f5d76e;
-    --text-dark: #333;
-    --text-light: #666;
-    --text-muted: #555;
-    --bg-light: #ffffff;
-    --bg-offwhite: #f9fdf9;
-    --bg-gray: #f4f7f4;
-    --border-light: #eee;
-    --error-red: #dc3545;
-    
-    /* Shadows */
-    --shadow-sm: 0 4px 20px rgba(0, 0, 0, 0.1);
-    --shadow-md: 0 15px 40px rgba(0, 0, 0, 0.15);
-    --shadow-lg: 0 20px 50px rgba(0, 0, 0, 0.15);
-    --shadow-gold: 0 4px 15px rgba(212, 175, 55, 0.4);
-    --shadow-gold-hover: 0 8px 25px rgba(212, 175, 55, 0.5);
-    
-    /* Spacing */
-    --spacing-xs: 4px;
-    --spacing-sm: 8px;
-    --spacing-md: 15px;
-    --spacing-lg: 20px;
-    --spacing-xl: 30px;
-    --spacing-2xl: 40px;
-    --spacing-3xl: 60px;
-    
-    /* Typography */
-    --font-body: 'Poppins', sans-serif;
-    --font-heading: 'Playfair Display', serif;
-    --font-size-xs: 12px;
-    --font-size-sm: 14px;
-    --font-size-md: 16px;
-    --font-size-lg: 20px;
-    --font-size-xl: 32px;
-    --font-size-2xl: 40px;
-    --font-size-3xl: 70px;
-    
-    /* Transitions */
-    --transition-fast: 0.3s ease;
-    --transition-slow: 0.5s ease;
-    
-    /* Layout */
-    --navbar-height: 80px;
-    --container-max: 1200px;
-    --border-radius-sm: 8px;
-    --border-radius-md: 10px;
-    --border-radius-lg: 15px;
-    --border-radius-xl: 20px;
-    --border-radius-round: 50px;
-}
-
-/* ============================================
-   2. RESET & BASE STYLES
-   ============================================ */
-*,
-*::before,
-*::after {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: var(--navbar-height);
-}
-
-body {
-    font-family: var(--font-body);
-    background-color: var(--bg-light);
-    color: var(--text-dark);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    font-weight: 600;
-    line-height: 1.2;
-}
-
-/* Reduced motion support */
-@media (prefers-reduced-motion: reduce) {
-    *,
-    *::before,
-    *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-        scroll-behavior: auto !important;
-    }
-}
-
-/* ============================================
-   3. UTILITY CLASSES
-   ============================================ */
-.container {
-    max-width: var(--container-max);
-    margin: 0 auto;
-    padding-inline: 5%;
-    width: 100%;
-}
-
-.btn {
-    display: inline-block;
-    padding: 14px var(--spacing-2xl);
-    border-radius: var(--border-radius-round);
-    text-decoration: none;
-    font-weight: 600;
-    transition: all var(--transition-fast);
-    text-transform: uppercase;
-    font-size: var(--font-size-sm);
-    letter-spacing: 1px;
-    cursor: pointer;
-    border: none;
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-primary {
-    background: linear-gradient(135deg, var(--accent-gold), var(--accent-gold-light));
-    color: var(--primary-green);
-    box-shadow: var(--shadow-gold);
-}
-
-.btn-primary:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-gold-hover);
-}
-
-.btn-primary:active {
-    transform: translateY(0);
-}
-
-/* Focus styles for keyboard navigation */
-.btn:focus-visible,
-.nav-links a:focus-visible,
-.social-icons a:focus-visible,
-.form-group input:focus-visible,
-.form-group select:focus-visible {
-    outline: 3px solid var(--accent-gold);
-    outline-offset: 3px;
-}
-
-/* ============================================
-   4. NAVIGATION BAR
-   ============================================ */
-.navbar {
-    background: linear-gradient(to right, var(--primary-green), var(--primary-green-light));
-    box-shadow: var(--shadow-sm);
-    position: fixed;
-    width: 100%;
-    top: 0;
-    left: 0;
-    z-index: 1000;
-    padding: 15px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    backdrop-filter: blur(0px);
-}
-
-.logo {
-    color: white;
-    font-size: var(--font-size-lg);
-    font-weight: 700;
-    font-family: var(--font-heading);
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-sm);
-    white-space: nowrap;
-    margin-inline-start: var(--spacing-2xl);
-}
-
-.logo i {
-    color: var(--accent-gold);
-    font-size: 18px;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-inline-end: var(--spacing-2xl);
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #fff;
-    font-weight: 500;
-    font-size: 13px;
-    padding: var(--spacing-sm) var(--spacing-md);
-    border-radius: var(--border-radius-xl);
-    transition: var(--transition-fast);
-    white-space: nowrap;
-}
-
-.nav-links a:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-    color: var(--accent-gold);
-}
-
-.admin-btn {
-    background-color: var(--accent-gold) !important;
-    color: var(--primary-green) !important;
-    font-weight: 700;
-    padding: 8px 18px !important;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-}
-
-/* ============================================
-   5. HERO SECTION
-   ============================================ */
-#home {
-    height: 100vh;
-    min-height: 600px;
-    background: linear-gradient(rgba(26, 58, 15, 0.6), rgba(26, 58, 15, 0.8)),
-                url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80');
-    background-size: cover;
-    background-position: center;
-    /* Removed background-attachment: fixed for better mobile performance */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    color: white;
-    position: relative;
-}
-
-/* Optional: Add parallax only on larger screens where it performs well */
-@media (min-width: 1024px) {
-    #home {
-        background-attachment: fixed;
-    }
-}
-
-.hero-content {
-    max-width: 900px;
-    padding: var(--spacing-2xl);
-    animation: fadeIn 1.5s ease-out;
-}
-
-.hero-content h1 {
-    font-size: var(--font-size-3xl);
-    margin-bottom: var(--spacing-lg);
-    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.3);
-}
-
-.hero-content p {
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-2xl);
-    font-weight: 300;
-    opacity: 0.9;
-    line-height: 1.8;
-}
-
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* ============================================
-   6. SECTION TITLES (No underlines)
-   ============================================ */
-.section-title {
-    text-align: center;
-    margin-bottom: var(--spacing-3xl);
-}
-
-.section-title h2 {
-    font-size: var(--font-size-2xl);
-    color: var(--primary-green-light);
-    margin-bottom: var(--spacing-md);
-    display: inline-block;
-}
-
-.section-title p {
-    color: var(--text-light);
-    font-size: var(--font-size-md);
-    margin-top: var(--spacing-md);
-}
-
-.section-title.light h2,
-.section-title.light p {
-    color: white;
-}
-
-/* ============================================
-   7. ABOUT SECTION
-   ============================================ */
-#about {
-    padding: 120px 0 100px;
-    scroll-margin-top: var(--navbar-height);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-3xl);
-    align-items: center;
-}
-
-.about-text h3 {
-    font-size: var(--font-size-xl);
-    color: var(--primary-green-light);
-    margin-bottom: var(--spacing-lg);
-}
-
-.about-text p {
-    color: var(--text-muted);
-    line-height: 1.9;
-    font-size: 15px;
-    text-align: justify;
-}
-
-.about-image {
-    position: relative;
-}
-
-.about-image img {
-    width: 100%;
-    height: 450px;
-    object-fit: cover;
-    border-radius: var(--border-radius-md);
-    box-shadow: var(--shadow-lg);
-}
-
-.about-image::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border: 3px solid var(--accent-gold);
-    border-radius: var(--border-radius-md);
-    top: 20px;
-    left: 20px;
-    z-index: -1;
-    transition: var(--transition-fast);
-}
-
-.about-image:hover::before {
-    top: 15px;
-    left: 15px;
-}
-
-/* ============================================
-   8. GALLERY SECTION
-   ============================================ */
-.gallery-section {
-    background-color: var(--primary-green-light);
-    padding: 80px 0;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: var(--spacing-lg);
-}
-
-.gallery-item {
-    position: relative;
-    overflow: hidden;
-    border-radius: var(--border-radius-md);
-    cursor: pointer;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    height: 250px;
-}
-
-.gallery-item img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-slow);
-    will-change: transform;
-}
-
-.gallery-item:hover img {
-    transform: scale(1.05);
-}
-
-/* Optional: Add loading lazy attribute in HTML, but CSS can hint */
-.gallery-item img {
-    content-visibility: auto;
-}
-
-/* ============================================
-   9. SERVICES SECTION
-   ============================================ */
-.services-section {
-    background-color: var(--bg-offwhite);
-    padding: 100px 0;
-}
-
-.services-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-xl);
-}
-
-.service-card {
-    background: var(--bg-light);
-    padding: var(--spacing-2xl) var(--spacing-lg);
-    text-align: center;
-    border-radius: var(--border-radius-lg);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-    transition: all var(--transition-fast);
-    flex: 1 1 300px;
-    min-width: 280px;
-    max-width: 350px;
-    border: 1px solid rgba(0, 0, 0, 0.03);
-    will-change: transform;
-}
-
-.service-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 15px 40px rgba(44, 94, 26, 0.15);
-    border-color: var(--accent-gold);
-}
-
-.service-card i {
-    font-size: 45px;
-    color: var(--primary-green-light);
-    margin-bottom: var(--spacing-lg);
-    display: block;
-    transition: var(--transition-fast);
-}
-
-.service-card:hover i {
-    color: var(--accent-gold);
-    transform: scale(1.1);
-}
-
-.service-card h3 {
-    font-size: 22px;
-    margin-bottom: var(--spacing-md);
-    color: var(--primary-green);
-}
-
-.service-card p {
-    font-size: var(--font-size-sm);
-    color: var(--text-light);
-    line-height: 1.7;
-}
-
-/* ============================================
-   10. RATES SECTION
-   ============================================ */
-.rates-section {
-    background: linear-gradient(135deg, var(--primary-green), var(--primary-green-light));
-    padding: 100px 0;
-}
-
-.rates-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: var(--spacing-xl);
-}
-
-.rate-card {
-    background: var(--bg-light);
-    padding: var(--spacing-2xl);
-    border-radius: var(--border-radius-lg);
-    flex: 1 1 300px;
-    min-width: 300px;
-    max-width: 350px;
-    box-shadow: var(--shadow-md);
-    border-top: 5px solid var(--accent-gold);
-    transition: transform var(--transition-fast);
-}
-
-.rate-card:hover {
-    transform: translateY(-5px);
-}
-
-.rate-card h3 {
-    color: var(--primary-green);
-    font-size: 24px;
-    margin-bottom: 25px;
-    display: flex;
-    align-items: center;
-    gap: var(--spacing-md);
-}
-
-.rate-card h3 i {
-    color: var(--accent-gold);
-    font-size: 24px;
-}
-
-.rate-card ul {
-    list-style: none;
-}
-
-.rate-card li {
-    padding: 12px 0;
-    border-bottom: 1px solid var(--border-light);
-    display: flex;
-    justify-content: space-between;
-    font-size: 15px;
-}
-
-.rate-card li:last-child {
-    border-bottom: none;
-}
-
-.rate-card strong {
-    color: var(--primary-green-light);
-    font-size: var(--font-size-md);
-}
-
-/* ============================================
-   11. BOOKING SECTION
-   ============================================ */
-.booking-section {
-    padding: var(--spacing-3xl) 0 80px;
-    background-color: var(--bg-gray);
-}
-
-.booking-section .section-title {
-    margin-bottom: var(--spacing-xl);
-}
-
-.booking-card-compact {
-    max-width: 800px;
-    margin: 0 auto;
-    background: var(--bg-light);
-    padding: var(--spacing-xl);
-    border-radius: var(--border-radius-xl);
-    box-shadow: var(--shadow-md);
-}
-
-.booking-form-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--spacing-lg);
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: var(--spacing-sm);
-}
-
-.form-group label {
-    font-weight: 600;
-    color: var(--primary-green-light);
-    font-size: var(--font-size-sm);
-}
-
-.form-group input,
-.form-group select {
-    padding: 12px;
-    border: 2px solid var(--border-light);
-    border-radius: var(--border-radius-sm);
-    font-family: var(--font-body);
-    transition: var(--transition-fast);
-    font-size: var(--font-size-sm);
-    background-color: #fcfcfc;
-    width: 100%;
-}
-
-.form-group input:focus,
-.form-group select:focus {
-    border-color: var(--primary-green-light);
-    background-color: var(--bg-light);
-    box-shadow: 0 0 0 4px rgba(44, 94, 26, 0.1);
-    outline: none;
-}
-
-/* Validation styles */
-.form-group input:invalid:not(:placeholder-shown) {
-    border-color: var(--error-red);
-}
-
-.form-group .error-message {
-    color: var(--error-red);
-    font-size: var(--font-size-xs);
-    margin-top: var(--spacing-xs);
-    display: none;
-}
-
-.form-group input:invalid:not(:placeholder-shown) + .error-message {
-    display: block;
-}
-
-.form-total-display {
-    grid-column: span 2;
-    justify-self: center;
-    background: linear-gradient(135deg, var(--primary-green-light), var(--primary-green));
-    color: white;
-    padding: 12px var(--spacing-xl);
-    border-radius: var(--border-radius-sm);
-    text-align: center;
-    margin: 5px auto;
-    width: fit-content;
-    min-width: 250px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-}
-
-.form-total-display h3 {
-    margin: 0;
-    font-size: 18px;
-    font-family: var(--font-heading);
-}
-
-.btn-block {
-    grid-column: span 2;
-    justify-self: center;
-    width: auto;
-    min-width: 220px;
-    padding: 14px var(--spacing-2xl);
-    margin: 5px auto 0;
-    font-size: var(--font-size-sm);
-    display: inline-block;
-    text-align: center;
-}
-
-/* ============================================
-   12. FOOTER
-   ============================================ */
-footer {
-    background-color: #111;
-    color: white;
-    text-align: center;
-    padding: var(--spacing-3xl) var(--spacing-lg);
-}
-
-footer p {
-    opacity: 0.6;
-    margin-bottom: var(--spacing-lg);
-    font-size: var(--font-size-sm);
-}
-
-.social-icons a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: white;
-    font-size: var(--font-size-lg);
-    margin: 0 var(--spacing-md);
-    transition: var(--transition-fast);
-    background: rgba(255, 255, 255, 0.1);
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    text-decoration: none;
-}
-
-.social-icons a:hover {
-    background-color: var(--accent-gold);
-    color: #111;
-    transform: translateY(-3px);
-}
-
-/* ============================================
-   13. RESPONSIVE DESIGN
-   ============================================ */
-
-/* Tablet landscape */
-@media (max-width: 1200px) {
-    .logo {
-        margin-inline-start: var(--spacing-lg);
-    }
-    .nav-links {
-        margin-inline-end: var(--spacing-lg);
-        gap: 5px;
-    }
-    .nav-links a {
-        padding: var(--spacing-sm) 10px;
-        font-size: var(--font-size-xs);
-    }
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-    .gallery-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: var(--spacing-md);
-    }
-}
-
-/* Small tablet / large mobile */
-@media (max-width: 900px) {
-    .navbar {
-        flex-direction: column;
-        padding: 12px 4%;
-        gap: 10px;
-    }
-    .logo {
-        margin-inline-start: 0;
-        font-size: 18px;
-    }
-    .nav-links {
-        margin-inline-end: 0;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: var(--spacing-sm);
-    }
-    .nav-links a {
-        padding: 6px 12px;
-        font-size: var(--font-size-xs);
-    }
-    .admin-btn {
-        padding: 6px 14px !important;
-        font-size: var(--font-size-xs) !important;
-    }
-    .about-grid {
-        grid-template-columns: 1fr;
-        text-align: center;
-        gap: var(--spacing-2xl);
-    }
-    .about-image::before {
-        display: none;
-    }
-    .service-card,
-    .rate-card {
-        flex: 0 1 100%;
-        max-width: 100%;
-    }
-}
-
-/* Mobile */
-@media (max-width: 768px) {
-    :root {
-        --font-size-3xl: 40px;
-        --font-size-2xl: 30px;
-        --font-size-xl: 24px;
+<style>
+    /* 1. GENERAL RESET & FONTS */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+    body { font-family: 'Poppins', sans-serif; background-color: #ffffff; color: #333; line-height: 1.6; overflow-x: hidden; }
+    h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+    /* 2. UTILITY CLASSES */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; width: 100%; }
+    .btn { display: inline-block; padding: 14px 40px; border-radius: 50px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; text-transform: uppercase; font-size: 14px; letter-spacing: 1px; cursor: pointer; border: none; }
+    .btn-primary { background: linear-gradient(135deg, #d4af37, #f5d76e); color: #1a3a0f; box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4); }
+    .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(212, 175, 55, 0.5); }
+
+    /* 3. NAVIGATION BAR - FINAL FIX FOR 1600x900 */
+    .navbar { 
+        background: linear-gradient(to right, #1a3a0f, #2c5e1a); 
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1); 
+        position: fixed; 
+        width: 100%; 
+        top: 0; 
+        left: 0; 
+        z-index: 1000;
+        padding: 15px 0;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     
-    .hero-content p {
-        font-size: var(--font-size-md);
+    .logo { 
+        color: white; 
+        font-size: 20px; 
+        font-weight: 700; 
+        font-family: 'Playfair Display', serif; 
+        display: flex; 
+        align-items: center; 
+        gap: 8px; 
+        white-space: nowrap;
+        margin-left: 40px;
     }
-    .booking-form-grid {
-        grid-template-columns: 1fr;
-        gap: var(--spacing-md);
+    .logo i { 
+        color: #d4af37; 
+        font-size: 18px; 
     }
-    .form-total-display,
-    .btn-block {
-        grid-column: span 1;
-        width: 100%;
-    }
-    .booking-card-compact {
-        padding: var(--spacing-lg);
-    }
-    .section-title p {
-        font-size: var(--font-size-sm);
-    }
-    .gallery-item {
-        height: 200px;
-    }
-}
 
-/* Small mobile */
-@media (max-width: 480px) {
-    :root {
-        --font-size-3xl: 32px;
-        --font-size-2xl: 24px;
-        --spacing-3xl: 30px;
+    .nav-links { 
+        list-style: none; 
+        display: flex; 
+        align-items: center; 
+        gap: 10px; 
+        margin-right: 40px;
+        padding: 0;
+    }
+    .nav-links li { 
+        margin-left: 0; 
+    }
+    .nav-links a { 
+        text-decoration: none; 
+        color: #fff; 
+        font-weight: 500; 
+        font-size: 13px; 
+        padding: 8px 14px; 
+        border-radius: 30px; 
+        transition: 0.3s; 
+        white-space: nowrap;
+    }
+    .nav-links a:hover { 
+        background-color: rgba(255,255,255,0.15); 
+        color: #d4af37; 
+    }
+    .admin-btn { 
+        background-color: #d4af37 !important; 
+        color: #1a3a0f !important; 
+        font-weight: 700; 
+        padding: 8px 18px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    }
+
+    /* 4. HERO SECTION */
+    #home { height: 100vh; min-height: 600px; background: linear-gradient(rgba(26, 58, 15, 0.6), rgba(26, 58, 15, 0.8)), url('https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80'); background-size: cover; background-position: center; background-attachment: fixed; display: flex; align-items: center; justify-content: center; text-align: center; color: white; position: relative; }
+    .hero-content { max-width: 900px; padding: 40px; animation: fadeIn 1.5s ease-out; }
+    .hero-content h1 { font-size: 70px; margin-bottom: 20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.3); line-height: 1.1; }
+    .hero-content p { font-size: 20px; margin-bottom: 40px; font-weight: 300; opacity: 0.9; line-height: 1.8; }
+
+    /* 5. SECTION TITLES - NO UNDERLINES */
+    .section-title { text-align: center; margin-bottom: 60px; width: 100%; }
+    .section-title h2 { font-size: 40px; color: #2c5e1a; margin-bottom: 15px; position: relative; display: inline-block; }
+    .section-title h2::after { display: none; }
+    .section-title p { color: #666; font-size: 16px; margin-top: 15px; }
+    .section-title.light h2, .section-title.light p { color: white; }
+
+    /* 6. ABOUT SECTION - FIXED NAVBAR COLLISION */
+    #about { padding: 120px 0 100px 0; }
+    #about, #gallery, #services, #rates, #booking { scroll-margin-top: 80px; }
+    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+    .about-text h3 { font-size: 30px; color: #2c5e1a; margin-bottom: 20px; }
+    .about-text p { color: #555; line-height: 1.9; font-size: 15px; text-align: justify; }
+    .about-image { position: relative; }
+    .about-image img { width: 100%; height: 450px; object-fit: cover; border-radius: 10px; box-shadow: 0 20px 50px rgba(0,0,0,0.15); }
+    .about-image::before { content: ''; position: absolute; width: 100%; height: 100%; border: 3px solid #d4af37; border-radius: 10px; top: 20px; left: 20px; z-index: -1; }
+
+    /* 7. GALLERY SECTION - FIXED WHITE SPACE */
+    .gallery-section { background-color: #2c5e1a; padding: 80px 0; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
+    .gallery-item { position: relative; overflow: hidden; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); height: 250px; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .gallery-item:hover img { transform: scale(1.05); }
+
+    /* 8. SERVICES SECTION */
+    .services-section { background-color: #f9fdf9; padding: 100px 0; }
+    .services-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; }
+    .service-card { background: white; padding: 40px 20px; text-align: center; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: 0.4s ease; flex: 1 1 300px; min-width: 280px; max-width: 350px; border: 1px solid rgba(0,0,0,0.03); }
+    .service-card:hover { transform: translateY(-10px); box-shadow: 0 15px 40px rgba(44, 94, 26, 0.15); border-color: #d4af37; }
+    .service-card i { font-size: 45px; color: #2c5e1a; margin-bottom: 20px; display: block; transition: 0.3s; }
+    .service-card:hover i { color: #d4af37; transform: scale(1.1); }
+    .service-card h3 { font-size: 22px; margin-bottom: 15px; color: #1a3a0f; }
+    .service-card p { font-size: 14px; color: #666; line-height: 1.7; }
+
+    /* 9. RATES SECTION */
+    .rates-section { background: linear-gradient(135deg, #1a3a0f, #2c5e1a); padding: 100px 0; }
+    .rates-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; width: 100%; }
+    .rate-card { background: white; padding: 40px; border-radius: 15px; flex: 1 1 300px; min-width: 300px; max-width: 350px; box-shadow: 0 15px 30px rgba(0,0,0,0.2); border-top: 5px solid #d4af37; transition: transform 0.3s; }
+    .rate-card:hover { transform: translateY(-5px); }
+    .rate-card h3 { color: #1a3a0f; font-size: 24px; margin-bottom: 25px; display: flex; align-items: center; gap: 10px; }
+    .rate-card h3 i { color: #d4af37; font-size: 24px; }
+    .rate-card ul { list-style: none; }
+    .rate-card li { padding: 12px 0; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; font-size: 15px; }
+    .rate-card li:last-child { border-bottom: none; }
+    .rate-card strong { color: #2c5e1a; font-size: 16px; }
+
+    /* 10. BOOKING SECTION - FIXED (No underline, compact, visible) */
+    .booking-section { padding: 60px 0 80px 0; background-color: #f4f7f4; }
+    .booking-section .section-title { margin-bottom: 30px; }
+    .booking-card-compact { max-width: 800px; margin: 0 auto; background: #fff; padding: 30px; border-radius: 20px; box-shadow: 0 15px 40px rgba(0,0,0,0.1); }
+    .booking-form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .form-group { display: flex; flex-direction: column; gap: 8px; }
+    .form-group label { font-weight: 600; color: #2c5e1a; font-size: 14px; }
+    .form-group input, .form-group select { padding: 12px; border: 2px solid #eee; border-radius: 8px; font-family: 'Poppins', sans-serif; transition: 0.3s; font-size: 14px; background-color: #fcfcfc; width: 100%; }
+    .form-group input:focus, .form-group select:focus { border-color: #2c5e1a; background-color: #fff; box-shadow: 0 0 0 4px rgba(44, 94, 26, 0.1); outline: none; }
+    .form-total-display { grid-column: span 2; justify-self: center; background: linear-gradient(135deg, #2c5e1a, #1a3a0f); color: white; padding: 12px 30px; border-radius: 8px; text-align: center; margin: 5px auto; width: fit-content; min-width: 250px; box-shadow: 0 5px 15px rgba(0,0,0,0.15); }
+    .form-total-display h3 { margin: 0; font-size: 18px; font-family: 'Playfair Display', serif; }
+    .btn-block { grid-column: span 2; justify-self: center; width: auto; min-width: 220px; padding: 14px 40px; margin: 5px auto 0; font-size: 14px; display: inline-block; text-align: center; }
+
+    /* 11. FOOTER */
+    footer { background-color: #111; color: white; text-align: center; padding: 60px 20px; }
+    footer p { opacity: 0.6; margin-bottom: 20px; font-size: 14px; }
+    .social-icons a { display: inline-block; color: white; font-size: 20px; margin: 0 15px; transition: 0.3s; background: rgba(255,255,255,0.1); width: 45px; height: 45px; line-height: 45px; border-radius: 50%; text-align: center; }
+    .social-icons a:hover { background-color: #d4af37; color: #111; transform: translateY(-3px); }
+
+    /* 12. ANIMATIONS & MOBILE */
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+    
+    @media (max-width: 1200px) {
+        .logo { margin-left: 20px; }
+        .nav-links { margin-right: 20px; gap: 5px; }
+        .nav-links a { padding: 8px 10px; font-size: 12px; }
     }
     
-    .container {
-        padding-inline: 4%;
+    @media (max-width: 1024px) { 
+        .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
     }
-    .hero-content p {
-        font-size: var(--font-size-sm);
+    
+    @media (max-width: 900px) { 
+        .navbar { 
+            flex-direction: column;
+            padding: 12px 4%;
+            gap: 10px;
+        }
+        .logo { 
+            margin-left: 0;
+            font-size: 18px;
+        }
+        .nav-links { 
+            margin-right: 0;
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 8px; 
+        }
+        .nav-links a { 
+            padding: 6px 12px; 
+            font-size: 12px; 
+        }
+        .admin-btn { 
+            padding: 6px 14px !important; 
+            font-size: 12px !important; 
+        }
+        .about-grid { 
+            grid-template-columns: 1fr; 
+            text-align: center; 
+            gap: 40px; 
+        }
+        .about-image::before { display: none; }
+        .service-card, .rate-card { flex: 0 1 100%; max-width: 100%; }
     }
-    .btn {
-        padding: 10px 25px;
-        font-size: var(--font-size-xs);
+    
+    @media (max-width: 768px) { 
+        .hero-content h1 { font-size: 40px; }
+        .hero-content p { font-size: 16px; }
+        .booking-form-grid { grid-template-columns: 1fr; gap: 15px; }
+        .form-total-display, .btn-block { grid-column: span 1; width: 100%; }
+        .booking-card-compact { padding: 20px; }
+        .section-title h2 { font-size: 30px; }
+        .section-title p { font-size: 14px; }
+        .gallery-item { height: 200px; }
     }
-    .gallery-grid {
-        grid-template-columns: 1fr;
+    
+    @media (max-width: 480px) {
+        .container { padding: 0 4%; }
+        .hero-content h1 { font-size: 32px; }
+        .hero-content p { font-size: 14px; }
+        .btn { padding: 10px 25px; font-size: 12px; }
+        .gallery-grid { grid-template-columns: 1fr; }
+        .gallery-item { height: 220px; }
+        .section-title h2 { font-size: 24px; }
+        .section-title { margin-bottom: 30px; }
+        #about { padding: 90px 0 50px 0; }
+        .about-text h3 { font-size: 24px; }
+        .about-image img { height: 250px; }
+        .service-card { padding: 25px 15px; }
+        .rate-card { padding: 25px; }
+        .booking-card-compact { padding: 15px; margin: 0 10px; }
+        .form-total-display h3 { font-size: 16px; }
+        footer p { font-size: 12px; }
+        .social-icons a { width: 35px; height: 35px; line-height: 35px; font-size: 16px; margin: 0 8px; }
     }
-    .gallery-item {
-        height: 220px;
+    
+    @media (max-width: 320px) {
+        .hero-content h1 { font-size: 28px; }
+        .section-title h2 { font-size: 22px; }
+        .nav-links a { padding: 4px 8px; font-size: 10px; }
+        .logo { font-size: 16px; }
+        .gallery-item { height: 180px; }
     }
-    #about {
-        padding: 90px 0 50px;
-    }
-    .about-image img {
-        height: 250px;
-    }
-    .service-card {
-        padding: 25px var(--spacing-md);
-    }
-    .rate-card {
-        padding: 25px;
-    }
-    .booking-card-compact {
-        padding: var(--spacing-md);
-        margin-inline: 10px;
-    }
-    .form-total-display h3 {
-        font-size: var(--font-size-md);
-    }
-    footer p {
-        font-size: var(--font-size-xs);
-    }
-    .social-icons a {
-        width: 35px;
-        height: 35px;
-        font-size: var(--font-size-md);
-        margin-inline: var(--spacing-sm);
-    }
-}
-
-/* Extra small mobile */
-@media (max-width: 320px) {
-    :root {
-        --font-size-3xl: 28px;
-        --font-size-2xl: 22px;
-    }
-    .nav-links a {
-        padding: var(--spacing-xs) var(--spacing-sm);
-        font-size: 10px;
-    }
-    .logo {
-        font-size: var(--font-size-md);
-    }
-    .gallery-item {
-        height: 180px;
-    }
-}
-
-/* ============================================
-   14. SCROLL MARGIN FOR ALL SECTIONS
-   ============================================ */
-#about, #gallery, #services, #rates, #booking {
-    scroll-margin-top: var(--navbar-height);
-}
-
-/* ============================================
-   15. PERFORMANCE & ACCESSIBILITY
-   ============================================ */
-
-/* Reduce motion preference is already handled at the top */
-/* will-change hints added to animated elements */
-/* focus-visible styles added for keyboard navigation */
-/* CSS variables for easier theme switching */
-
-/* Optional: Dark mode support (uncomment if needed) */
-/*
-@media (prefers-color-scheme: dark) {
-    :root {
-        --bg-light: #1a1a1a;
-        --text-dark: #f0f0f0;
-        --text-light: #ccc;
-        --border-light: #333;
-    }
-}
+</style>
