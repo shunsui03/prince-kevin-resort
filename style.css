@@ -100,11 +100,36 @@
     .about-image::before { content: ''; position: absolute; width: 100%; height: 100%; border: 3px solid #d4af37; border-radius: 10px; top: 20px; left: 20px; z-index: -1; }
 
     /* 7. GALLERY SECTION */
-    .gallery-section { background-color: #2c5e1a; padding: 80px 0; }
-    .gallery-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; width: 100%; }
-    .gallery-item { position: relative; overflow: hidden; border-radius: 10px; cursor: pointer; box-shadow: 0 5px 15px rgba(0,0,0,0.2); height: 250px; }
-    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
-    .gallery-item:hover img { transform: scale(1.05); }
+    /* 7. GALLERY SECTION */
+    .gallery-section { 
+    background-color: #2c5e1a; 
+    padding: 100px 0; 
+    }
+    .gallery-grid { 
+    display: grid; 
+    grid-template-columns: repeat(4, 1fr); 
+    gap: 25px; 
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    }
+    .gallery-item { 
+    position: relative; 
+    overflow: hidden; 
+    border-radius: 12px; 
+    cursor: pointer; 
+    box-shadow: 0 8px 25px rgba(0,0,0,0.25); 
+    height: 300px; 
+    }
+    .gallery-item img { 
+    width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+    transition: transform 0.5s ease; 
+    }
+    .gallery-item:hover img { 
+    transform: scale(1.05); 
+    }
 
     /* 8. SERVICES SECTION */
     .services-section { background-color: #f9fdf9; padding: 100px 0; }
